@@ -1,0 +1,11 @@
+﻿
+.widget-style {
+    border: 0.5rem solid;
+    border-color: lightblue;
+    border-top-left-radius: 15%;
+    border-bottom-right-radius: 15%;
+    width: 600px;
+    height: 350px;
+    padding: 0.5em;
+    background-color:floralwhite;
+}
