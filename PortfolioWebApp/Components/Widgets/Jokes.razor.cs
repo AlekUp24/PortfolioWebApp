@@ -5,6 +5,7 @@
         private JokesResponse? response;
         private string hiddenPunchline = string.Empty;
         private bool isInitialized = false;
+        private string btnAttribute = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -15,6 +16,7 @@
         {
             response = null;
             hiddenPunchline = "* hidding response *";
+            btnAttribute = "btn btn-success";
             // use Http from DI
             response = await Http.GetFromJsonAsync<JokesResponse>("https://official-joke-api.appspot.com/jokes/random");
         }
@@ -28,6 +30,7 @@
         public void GetPunchline()
         {
             hiddenPunchline = response.Punchline;
+            btnAttribute = "btn btn-secondary disabled";
         }
 
     }

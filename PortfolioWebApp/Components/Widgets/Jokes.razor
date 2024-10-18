@@ -6,7 +6,7 @@
 
 <h2 class="my-5 mx-auto">Jokes Component that calls external API</h2>
 
-    <p class="mb-5">
+    <p class="mb-5 lh-lg">
         Jokes Component that calls external API when OnInitializedAsync() method is invoked. It requires InteractiveServer render mode.<br />
         This API is provided by '<a href="https://official-joke-api.appspot.com" target="_blank">https://official-joke-api.appspot.com</a>' and dosen't require API KEY to interact with it.<br />
         The API is also called asynchronously each time <strong>'Next Joke'</strong> button is clicked.<br />
@@ -14,16 +14,16 @@
     </p>
 
     <div class="card widget-style mx-auto">
-        <h2 class="card-title text-dark mb-3">Here is your joke:</h2>
+        <h2 class="card-title text-dark mb-3 mt-2">Here is your joke:</h2>
             @if (response != null)
             {
             <div class="card-body">
                 <h5 class="my-4">@response.Setup</h5>
-                <h5 class="my-4">@hiddenPunchline</h5>
+                <h5 class="my-4"><i>@hiddenPunchline</i></h5>
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-success mx-2 col-4" onclick="@GetPunchline">Show Punchline</button>
+                <button class="@btnAttribute mx-2 col-4 " onclick="@GetPunchline">Show Punchline</button>
                 <button class="btn btn-warning mx-2 col-4" onclick="@NextJokeAsync">Next Joke</button>
             </div>
             }
