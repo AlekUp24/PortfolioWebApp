@@ -1,64 +1,68 @@
 ﻿@page "/weather"
-@attribute [StreamRendering]
+@inject HttpClient Http
+@rendermode InteractiveServer
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>My Weather API </PageTitle>
 
-<h1>Weather</h1>
+<center>
 
-<p>This component demonstrates showing data.</p>
+<h2 class="my-5 mx-auto">Page for checking the weather around the World!</h2>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<p class="mb-5 lh-lg">
+        This page retrieves data from an external API (using an API key) provided by '<a href="https://api.openweathermap.org" target="_blank">https://api.openweathermap.org</a>'. <br />
+    The data is fetched with injected HttpClient and page is using InteractiveServer render mode. <br />
+    Each time the user clicks the <strong>'Get Weather'</strong> button, the API is called to obtain the necessary longitude and latitude for the provided location. <br />
+    If location is not found - error message is displayed.
+    Following this, another API call is made to retrieve the current weather information. 
+</p>
 
-@code {
-    private WeatherForecast[]? forecasts;
 
-    protected override async Task OnInitializedAsync()
+    <div class="form-container">
+        <form data-enhance>
+            <AntiforgeryToken/>
+            <div class="form-control">
+                <label>
+                    Country:<br />
+                    <InputText @bind-Value="countryCode" />
+                </label>
+
+                <label>
+                    Code:<br />
+                    <InputText @bind-Value="stateCode" />
+                </label>
+
+                <label>City:<br />
+                        <InputText @bind-Value="cityName"/>
+                </label>
+
+            </div>
+
+        <button class="btn btn-warning mx-2 col-4 mt-3 text-lg-center" onclick="@GetLanLon"><strong><i class="bi bi-thermometer-sun"></i> Get Weather</strong></button>
+
+       
+        </form>
+   
+
+    @if (!firstLoad)
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
 
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        @if (response == null )
         {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+            <div class="spinner-border mt-4" style="width: 4rem; height: 4rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        }
+        else
+        {
+            <h5 class="font-monospace mt-4">Currently in @response.Name:</h5>
+            <div class="result-container">
+                <p style="font-size: 1.3em;">@response.Weather[0].Main</p>
+                <img class="weather-icon" src=@iconUrl alt="Weather Icon">
+                <p style="font-size: 1.5em;">@response.Main.Temp.ToString("0.0") °C</p>
+            </div>
+            
+        }
     }
+    </div>
+</center>
 
-    private class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-}
