@@ -14,6 +14,7 @@
         Each time the user clicks the <strong>'Get Weather'</strong> button, the API is called to obtain the necessary longitude and latitude for the provided location. <br />
         If location is not found - error message is displayed.
         Following this, another API call is made to retrieve the current weather information. 
+        We also save results to the DB, so have a look at history calls in 'Weather Api History' tab.
     </p>
 
 
@@ -25,10 +26,12 @@
                     Country:<br />
                     <InputText @bind-Value="countryCode" />
                 </label>
+                <!-- 
                 <label>
                     Code:<br />
                     <InputText @bind-Value="stateCode" />
                 </label>
+                -->
                 <label>City:<br />
                         <InputText @bind-Value="cityName"/>
                 </label>

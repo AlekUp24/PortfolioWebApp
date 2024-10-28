@@ -1,0 +1,8 @@
+﻿
+::deep .weather-history-TH {
+    overflow: hidden;
+    background-color: #fbe385;
+    border: 1px solid #808080;
+    text-align: justify-all;
+    width: auto;
+}

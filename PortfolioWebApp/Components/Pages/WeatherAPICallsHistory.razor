@@ -1,0 +1,54 @@
+﻿@page "/weatherApiCallsHistory"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+<PageTitle>Weather API History</PageTitle>
+
+<center>
+
+    <h2 class="my-5 mx-auto">Take a look at Weather API history calls.</h2>
+
+    <p class="mb-5 lh-lg">
+        This table presents all calls made to the <strong>'My Weather API'</strong>.<br />
+        All responses are stored in the database, and we asynchronously query the database to retrieve the relevant information.<br />
+        The data is displayed using QuickGrid, which facilitates efficient pagination for enhanced user experience.
+
+    </p>
+
+
+    <h2 class="my-4 font-monospace">Weather History:</h2>
+
+    @if (@historyCount > 0)
+    {
+        <QuickGrid Items="@itemsWeatherHistory" Pagination="@pagination">
+            <PropertyColumn Property="@(w => w.Country)" IsDefaultSortColumn="true" Title="Country" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.City)" Title="City" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Lat)" Title="Lat" Sortable="true" Format="00.00" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Lon)" Title="Lon" Sortable="true" Format="00.00" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Description)" Title="Description" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Temperature)" Title="Temperature" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.FeelsLike)" Title="FeelsLike" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.WindSpeed)" Title="WindSpeed" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Humidity)" Title="Humidity" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Pressure)" Title="Pressure" Sortable="true" class="weather-history-TH" />
+
+        </QuickGrid>
+       <Paginator State="@pagination"/>
+    } 
+    else
+    {
+        <h4>No history data found. Please use API calls to generate history.</h4>
+    }
+</center>
+
+<br />
+<br />
+<br />
+<p class="mb-5 lh-lg">
+    IDEAS:
+    <br />
+    Add Date to the table (Weather History Model) (?? what if multiple entries the same day ??)
+    <br />
+    Allow filtering upon category or date, to make it more user friendly/
+</p>

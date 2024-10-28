@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PortfolioWebApp.Contracts;
+using PortfolioWebApp.Models;
+using PortfolioWebApp.Repositories;
 using System.Runtime.CompilerServices;
 using static PortfolioWebApp.Components.Widgets.Jokes;
 
@@ -12,6 +15,11 @@ namespace PortfolioWebApp.Components.Pages
         private string iconUrl;
         private bool firstLoad;
         private bool locationFound;
+
+        private WeatherHistory? weatherHistory;
+
+        [Inject]
+        public IWeatherHistoryRepository? weatherHistoryRepository { get; set; }
 
         // to HIDE later
         private string API_KEY = "a48e893f5b18eec63e166b52def1e3b0";
@@ -76,6 +84,21 @@ namespace PortfolioWebApp.Components.Pages
                 if (response != null && response.Weather.Any())
                 {
                     iconUrl = "https://openweathermap.org/img/wn/" + response.Weather[0].Icon + "@2x.png";
+                    
+                    weatherHistory = new WeatherHistory();
+                    weatherHistory.Country = countryCode;
+                    weatherHistory.City = cityName;
+                    weatherHistory.Lat = location.Lat;
+                    weatherHistory.Lon = location.Lon;
+                    weatherHistory.Description = response.Weather[0].Main;
+                    weatherHistory.Temperature = response.Main.Temp;
+                    weatherHistory.FeelsLike = response.Main.Feels_Like;
+                    weatherHistory.WindSpeed = response.Wind.Speed;
+                    weatherHistory.Humidity = response.Main.Humidity;
+                    weatherHistory.Pressure = response.Main.Pressure;
+
+                    await weatherHistoryRepository.AddToWeatherHistory(weatherHistory);
+
                 }
             }
             catch (Exception ex)
