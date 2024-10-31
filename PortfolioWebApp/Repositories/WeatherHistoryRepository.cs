@@ -26,8 +26,10 @@ namespace PortfolioWebApp.Repositories
 
         public async Task<WeatherHistory> AddToWeatherHistory(WeatherHistory weatherHistory)
         {
-            var existingRecord = await _appDbContext.WeatherHistory.FirstOrDefaultAsync(w => 
-                               w.City == weatherHistory.City
+            // only check saved in last 5 minutes
+            var existingRecord = await _appDbContext.WeatherHistory.FirstOrDefaultAsync(w =>
+                               w.DateTime >= DateTime.Now.AddMinutes(-5) 
+                            && w.City == weatherHistory.City
                             && w.Lat == weatherHistory.Lat
                             && w.Lon == weatherHistory.Lon
                             && w.Description == weatherHistory.Description

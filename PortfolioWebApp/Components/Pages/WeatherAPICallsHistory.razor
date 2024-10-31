@@ -22,7 +22,8 @@
     @if (@historyCount > 0)
     {
         <QuickGrid Items="@itemsWeatherHistory" Pagination="@pagination">
-            <PropertyColumn Property="@(w => w.Country)" IsDefaultSortColumn="true" Title="Country" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.DateTime)" IsDefaultSortColumn="true" Title="DateTime" Sortable="true" class="weather-history-TH" />
+            <PropertyColumn Property="@(w => w.Country)" Title="Country" Sortable="true" class="weather-history-TH" />
             <PropertyColumn Property="@(w => w.City)" Title="City" Sortable="true" class="weather-history-TH" />
             <PropertyColumn Property="@(w => w.Lat)" Title="Lat" Sortable="true" Format="00.00" class="weather-history-TH" />
             <PropertyColumn Property="@(w => w.Lon)" Title="Lon" Sortable="true" Format="00.00" class="weather-history-TH" />
@@ -47,8 +48,6 @@
 <br />
 <p class="mb-5 lh-lg">
     IDEAS:
-    <br />
-    Add Date to the table (Weather History Model) (?? what if multiple entries the same day ??)
     <br />
     Allow filtering upon category or date, to make it more user friendly/
 </p>

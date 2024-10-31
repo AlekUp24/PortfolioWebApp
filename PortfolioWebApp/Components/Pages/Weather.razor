@@ -13,8 +13,12 @@
         The data is fetched with injected HttpClient and page is using InteractiveServer render mode. <br />
         Each time the user clicks the <strong>'Get Weather'</strong> button, the API is called to obtain the necessary longitude and latitude for the provided location. <br />
         If location is not found - error message is displayed.
-        Following this, another API call is made to retrieve the current weather information. 
+        Following this, another API call is made to retrieve the current weather information. <br />
         We also save results to the DB, so have a look at history calls in 'Weather Api History' tab.
+        <hr />
+        <strong>Please note</strong> that records for a given city are saved to the database at most once every 5 minutes.<br /> 
+        If the same city is queried multiple times within a 5-minute period, only one record will be stored to prevent duplicate entries.<br /> 
+        After 5 minutes, if the same city is queried again, a new record will be added to the database, as weather conditions may have changed.
     </p>
 
 

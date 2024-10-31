@@ -86,6 +86,7 @@ namespace PortfolioWebApp.Components.Pages
                     iconUrl = "https://openweathermap.org/img/wn/" + response.Weather[0].Icon + "@2x.png";
                     
                     weatherHistory = new WeatherHistory();
+                    weatherHistory.DateTime = DateTime.Now;
                     weatherHistory.Country = countryCode;
                     weatherHistory.City = cityName;
                     weatherHistory.Lat = location.Lat;

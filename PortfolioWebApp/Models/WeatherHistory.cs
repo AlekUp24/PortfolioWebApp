@@ -3,6 +3,7 @@
     public class WeatherHistory
     {
         public int Id { get; set; }
+        public DateTime DateTime { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public decimal Lat { get; set; }
