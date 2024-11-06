@@ -1,0 +1,40 @@
+﻿
+<div>
+    
+        @if (isExpanded)
+        {
+        <button @onclick="Toggle" class="btn btn-secondary mx-2 col-3 mt-3 mb-4 text-lg-center">
+            <span>Hide information</span>
+        </button>
+        }
+        else
+        {
+        <button @onclick="Toggle" class="btn btn-outline-secondary mx-2 col-3 mt-3 mb-4 text-lg-center">
+            <span>More information</span>
+        </button>
+            
+        }
+
+
+    @if (isExpanded)
+    {
+        <div class="expandable-content">
+            <p>@displayText</p>
+        </div>
+    }
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public string? displayText { get; set; }
+
+    private bool isExpanded = false;
+
+    private void Toggle()
+    {
+        isExpanded = !isExpanded;
+    }
+}

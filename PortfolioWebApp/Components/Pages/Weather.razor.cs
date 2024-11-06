@@ -95,8 +95,8 @@ namespace PortfolioWebApp.Components.Pages
                     weatherHistory.Temperature = response.Main.Temp;
                     weatherHistory.FeelsLike = response.Main.Feels_Like;
                     weatherHistory.WindSpeed = response.Wind.Speed;
-                    weatherHistory.Humidity = response.Main.Humidity;
-                    weatherHistory.Pressure = response.Main.Pressure;
+                    weatherHistory.Humidity = Math.Round(response.Main.Humidity,2);
+                    weatherHistory.Pressure = Math.Round(response.Main.Pressure, 2);
 
                     await weatherHistoryRepository.AddToWeatherHistory(weatherHistory);
 

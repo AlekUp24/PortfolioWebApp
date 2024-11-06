@@ -3,6 +3,7 @@ using PortfolioWebApp.Components;
 using PortfolioWebApp.Contracts;
 using PortfolioWebApp.Data;
 using PortfolioWebApp.Repositories;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddRadzenComponents();
 
 // add Http Client
 builder.Services.AddScoped<HttpClient>();
