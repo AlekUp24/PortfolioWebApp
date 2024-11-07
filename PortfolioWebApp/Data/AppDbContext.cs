@@ -9,5 +9,6 @@ namespace PortfolioWebApp.Data
 
         // add tables 
         public DbSet<WeatherHistory> WeatherHistory { get; set; }
+        public DbSet<InnovationIdeas> InnovationIdeas { get; set; }
     }
 }

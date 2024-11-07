@@ -1,4 +1,4 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark"> 
     <div class="container-fluid">
         <a class="navbar-brand" href="">PortfolioWebApp</a>
     </div>
@@ -6,7 +6,7 @@
 
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()" style="min-width: 150px;">
     <nav class="flex-column">
 
         <div class="nav-item px-3">
@@ -38,11 +38,20 @@
                 <span class="bi bi-clock-history" aria-hidden="true"></span> Weather API History
             </NavLink>
         </div>
-    
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="IdeaShow">
+                <span class="bi bi-card-checklist" aria-hidden="true"></span> Show Ideas
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3 ms-3">
+            <NavLink class="nav-link" href="IdeaAdd">
+                <span class="bi bi-plus-square" aria-hidden="true"></span> Add New Idea
+            </NavLink>
+        </div>
 
     </nav>
 </div>
-
-
 
 

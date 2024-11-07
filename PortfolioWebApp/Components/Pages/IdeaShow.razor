@@ -1,0 +1,60 @@
+﻿@page "/IdeaShow"
+@rendermode InteractiveServer
+@using PortfolioWebApp.Models
+
+<h3>IdeaShow</h3>
+
+@if (@AllIdeas == null)
+{
+    <h2>Loading...</h2>
+}
+else
+{
+    <div class="d-flex flex-wrap justify-content-start">
+    @foreach (InnovationIdeas idea in AllIdeas)
+    {
+        <div class="p-2 col-4">
+            <RadzenCard class="rz-my-12" Style="max-width: 420px; height:480px;">
+                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Start" Gap="1rem" class="rz-p-4">
+                        <RadzenStack Gap="0" Style="max-width: 350px; height:150px;">
+                        <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-2 rz-my-0">Idea Name</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Body1"><b>@idea.name</b></RadzenText>
+                        <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-mb-0">Description</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Body1" Style="white-space: normal; word-wrap: break-word; overflow-wrap: break-word; width: 100%;"><b>@idea.description</b></RadzenText>
+                    </RadzenStack>
+                </RadzenStack>
+                    <RadzenCard class="rz-background-color-info-dark rz-shadow-0 rz-border-radius-0 rz-p-8" style="margin: 1rem calc(-1 * var(--rz-card-padding));">
+                    <RadzenText TextStyle="TextStyle.H6" class="rz-color-on-primary-light"><strong>Details</strong></RadzenText>
+                    <RadzenRow RowGap="0">
+                        <RadzenColumn SizeSM="6">
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-primary-light rz-display-flex rz-mt-4 rz-mb-0">Creation Date</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Body1" class="rz-color-on-primary-light"><b>@idea.CreationTime</b></RadzenText>
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-primary-light rz-display-flex rz-mt-4 rz-mb-0">Last Updated</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Body1" class="rz-color-on-primary-light"><b>@idea.LastUpdated</b></RadzenText>
+                        </RadzenColumn>
+                        <RadzenColumn SizeSM="6">
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-primary-light rz-display-flex rz-mt-4 rz-mb-0">Status</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Body1" class="rz-color-on-primary-light"><b>
+                                    @if (idea.implemented)
+                                    {
+                                        <span style="color:lawngreen">Implemented</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color:orangered">Not implemented</span>
+                                    }
+                                </b></RadzenText>
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-primary-light rz-display-flex rz-mt-4 rz-mb-0">Category</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Body1" class="rz-color-on-primary-light"><b>@idea.category</b></RadzenText>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </RadzenCard>
+                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0">
+                    <RadzenButton Variant="Variant.Text" Click="() => ChangeStatus(idea)" class="rz-text-secondary-color" Text="Change Status" />
+                    <RadzenButton Variant="Variant.Text" Text="Edit" />
+                </RadzenStack>
+            </RadzenCard>
+        </div>
+    }
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@page "/IdeaAdd"
+@rendermode InteractiveServer
+@using PortfolioWebApp.Models
+
+<h3>IdeaAdd</h3>
+
+@if (@isNewSubmission)
+{
+    <div class="form-container">
+        <EditForm Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
+            <label>
+                Name:<br />
+                <InputText @bind-Value="Name" />
+            </label>
+            <label>
+                Description:<br />
+                <InputText @bind-Value="Description" />
+            </label>
+            <label>
+                Category:<br />
+                <InputSelect @bind-Value="Category">
+                    @foreach (IdeaCategory category in Enum.GetValues(typeof(IdeaCategory)))
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </InputSelect>
+            </label>
+
+            <button type="submit" class="btn btn-warning mx-2 col-4 mt-3 text-lg-center">
+                <strong><i class="bi bi-thermometer-sun"></i>Add Idea</strong>
+            </button>
+        </EditForm>
+    </div>
+}
+else
+{
+    <center>
+        <h3>Idea submitted succesfuly. Thank you!</h3>
+        <button @onclick="() => isNewSubmission = true" class="btn btn-primary mx-2 col-4 mt-3 text-lg-center">
+            <strong><i class=""></i>Submitt another idea</strong>
+        </button>
+    </center>
+}
+

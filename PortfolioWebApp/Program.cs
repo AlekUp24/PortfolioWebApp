@@ -25,6 +25,7 @@ builder.Services.AddScoped<HttpClient>();
 
 // add Interface and Repo
 builder.Services.AddScoped<IWeatherHistoryRepository, WeatherHistoryRepository>();
+builder.Services.AddScoped<IInnovationIdeasRepository, InnovationIdeasRepository>();
 
 var app = builder.Build();
 

@@ -13,18 +13,16 @@
     <p class="mb-5 lh-lg">
         This table presents all calls made to the <strong>'My Weather API'</strong>.<br />
         All responses are stored in the database, and we asynchronously query the database to retrieve the relevant information.<br />
-        The data is displayed using QuickGrid, which facilitates efficient pagination for enhanced user experience.
+        The data is displayed using <a href="https://blazor.radzen.com/datagrid?theme=material3" target="_blank">RadzenDataGrid</a>, which facilitates efficient pagination, filtering and enhanced user experience.
 
     </p>
-
 
     <h2 class="my-4 font-monospace">Weather History:</h2>
 
     @if (@historyCount > 0)
     {   
         <div class="container col-12 container-fluid">
-
-          <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" 
+            <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" 
                FilterMode="FilterMode.Simple" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
                PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                Data="@itemsWeatherHistory" ColumnWidth="300px" class="rounded">
@@ -43,7 +41,6 @@
                     <RadzenDataGridColumn Property="@nameof(WeatherHistory.Lon)" Filterable="false" Title="Lon" Width="100px" TextAlign="TextAlign.Center"/>
                 </Columns>
             </RadzenDataGrid> 
-  
         </div>
     }
     else
