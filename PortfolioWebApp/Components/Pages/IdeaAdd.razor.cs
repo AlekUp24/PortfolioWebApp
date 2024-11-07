@@ -2,6 +2,7 @@
 using PortfolioWebApp.Contracts;
 using PortfolioWebApp.Data;
 using PortfolioWebApp.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace PortfolioWebApp.Components.Pages
 {
@@ -14,8 +15,10 @@ namespace PortfolioWebApp.Components.Pages
 
         [SupplyParameterFromForm]
         protected string Name { get; set; }
+
         [SupplyParameterFromForm]
         protected string Description { get; set; }
+
         [SupplyParameterFromForm]
         protected IdeaCategory Category { get; set; }
         [SupplyParameterFromForm]
@@ -50,6 +53,12 @@ namespace PortfolioWebApp.Components.Pages
                 await innovationIdeasRepository.AddToIdeas(model);
                 isNewSubmission = false;
             }
+        }
+        private async Task ResetView()
+        {
+            isNewSubmission = true;
+            Name = string.Empty;
+            Description = string.Empty;
         }
     }
 }

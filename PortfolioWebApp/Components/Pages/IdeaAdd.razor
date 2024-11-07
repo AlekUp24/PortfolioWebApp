@@ -4,41 +4,61 @@
 
 <h3>IdeaAdd</h3>
 
+
 @if (@isNewSubmission)
 {
-    <div class="form-container">
-        <EditForm Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
-            <label>
-                Name:<br />
-                <InputText @bind-Value="Name" />
-            </label>
-            <label>
-                Description:<br />
-                <InputText @bind-Value="Description" />
-            </label>
-            <label>
-                Category:<br />
-                <InputSelect @bind-Value="Category">
-                    @foreach (IdeaCategory category in Enum.GetValues(typeof(IdeaCategory)))
-                    {
-                        <option value="@category">@category</option>
-                    }
-                </InputSelect>
-            </label>
 
-            <button type="submit" class="btn btn-warning mx-2 col-4 mt-3 text-lg-center">
-                <strong><i class="bi bi-thermometer-sun"></i>Add Idea</strong>
-            </button>
+    <div class="form-container col-10 mx-auto p-5">
+        <div class="form-control">
+        <EditForm Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
+
+            <div class="text-lg-center my-2">
+                    <h3>Description of that form - what is it for?</h3>
+                </div>
+
+                <div class="row mb-3">
+                    <label>
+                        Name:<br />
+                        <InputText class="col-6" @bind-Value="Name" />
+                    </label>
+                </div>
+
+                <div class="row mb-3">
+                    <label>
+                        Description:<br />
+                        <InputTextArea class="col-8" @bind-Value="Description" />
+                    </label>
+                </div>
+
+                <div class="row mb-3">
+                    <label>
+                        Category:<br />
+                        <InputSelect class="col-4 p-2" @bind-Value="Category">
+                            @foreach (IdeaCategory category in Enum.GetValues(typeof(IdeaCategory)))
+                            {
+                                <option value="@category">@category</option>
+                            }
+                        </InputSelect>
+                    </label>
+                </div>
+
+            <center>
+                <button type="submit" class="btn btn-success mx-2 col-3 mt-3 mb-3 text-lg-center">
+                    <strong><i class="bi bi-feather"></i> Add Idea</strong>
+                </button>
+            </center>
         </EditForm>
+        </div>
     </div>
 }
 else
 {
     <center>
         <h3>Idea submitted succesfuly. Thank you!</h3>
-        <button @onclick="() => isNewSubmission = true" class="btn btn-primary mx-2 col-4 mt-3 text-lg-center">
-            <strong><i class=""></i>Submitt another idea</strong>
+        <button @onclick="ResetView" class="btn btn-primary mx-2 col-3 mt-3 text-lg-center">
+            <strong><i class="bi bi-border-all"></i> Submitt another idea</strong>
         </button>
     </center>
 }
+
 

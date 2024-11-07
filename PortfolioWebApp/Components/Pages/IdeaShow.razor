@@ -4,9 +4,15 @@
 
 <h3>IdeaShow</h3>
 
-@if (@AllIdeas == null)
+@if (AllIdeas == null)
 {
     <h2>Loading...</h2>
+}
+else if (AllIdeas.Count() == 0)
+{
+    <center>
+        <h2>No ideas to display...</h2>
+    </center>
 }
 else
 {
