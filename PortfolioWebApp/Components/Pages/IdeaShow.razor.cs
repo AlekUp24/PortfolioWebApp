@@ -21,5 +21,16 @@ namespace PortfolioWebApp.Components.Pages
         {
             await innovationIdeasRepository.ChangeStatus(idea);
         }
+
+        private async Task DeleteIdea(int ideaId)
+        {
+            await innovationIdeasRepository.DeleteIdea(ideaId);
+            AllIdeas = await innovationIdeasRepository.GetAllIdeas();
+        }
+
+        private void NavigateToEdit(int ideaId)
+        {
+            Navigation.NavigateTo($"/IdeaEdit/{ideaId}");
+        }
     }
 }

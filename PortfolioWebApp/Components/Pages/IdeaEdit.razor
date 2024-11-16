@@ -1,0 +1,19 @@
+﻿@page "/IdeaEdit/{IdeaId:int}"
+@rendermode InteractiveServer
+
+@* <h3>Idea to be edited:</h3> *@
+
+@if (EditedIdea == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h1>I'm working on this... Please come back later to see this page.</h1>
+@*     <p>@EditedIdea.Id</p>
+    <p>@EditedIdea.Name</p>
+    <p>@EditedIdea.Description</p>
+    <p>@EditedIdea.Category</p>
+    <p>@EditedIdea.LastUpdated</p> *@
+}
+

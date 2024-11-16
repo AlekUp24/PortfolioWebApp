@@ -43,10 +43,10 @@ namespace PortfolioWebApp.Components.Pages
             }
             else
             {
-                model.name = Name;
-                model.description = Description;
-                model.category = Category;
-                model.implemented = false;
+                model.Name = Name;
+                model.Description = Description;
+                model.Category = Category;
+                model.Implemented = false;
                 model.CreationTime = DateTime.Now;
                 model.LastUpdated = DateTime.Now;
 

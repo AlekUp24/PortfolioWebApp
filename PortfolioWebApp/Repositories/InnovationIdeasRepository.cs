@@ -24,14 +24,18 @@ namespace PortfolioWebApp.Repositories
             return await _appDbContext.InnovationIdeas.OrderByDescending(idea => idea.LastUpdated).ToListAsync();
         }
 
+        public async Task<InnovationIdeas> GetIdeaById (int ideaId)
+        {
+            return await _appDbContext.InnovationIdeas.FirstOrDefaultAsync(idea => idea.Id == ideaId);
+        }
 
         public async Task<InnovationIdeas> AddToIdeas(InnovationIdeas idea)
         {
 
             var existingRecord = await _appDbContext.InnovationIdeas.FirstOrDefaultAsync(w =>
-                                       w.name == idea.name
-                                    && w.description == idea.description
-                                    && w.category == idea.category
+                                       w.Name == idea.Name
+                                    && w.Description == idea.Description
+                                    && w.Category == idea.Category
                                     );
 
             if (existingRecord != null) 
@@ -49,9 +53,17 @@ namespace PortfolioWebApp.Repositories
 
         }
 
+        public async Task DeleteIdea(int ideaId)
+        {
+            var toDelete = await GetIdeaById(ideaId);
+            _appDbContext.InnovationIdeas.Remove(toDelete);
+            await _appDbContext.SaveChangesAsync();
+
+        }
+
         public async Task ChangeStatus(InnovationIdeas idea)
         {
-            idea.implemented = !idea.implemented;
+            idea.Implemented = !idea.Implemented;
             idea.LastUpdated = DateTime.Now;
             await _appDbContext.SaveChangesAsync();
         }

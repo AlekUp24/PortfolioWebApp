@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Identity.Client;
+using Microsoft.SqlServer.Server;
 using PortfolioWebApp.Contracts;
 using PortfolioWebApp.Models;
 using PortfolioWebApp.Repositories;
 using System.Runtime.CompilerServices;
 using static PortfolioWebApp.Components.Widgets.Jokes;
+
+
 
 namespace PortfolioWebApp.Components.Pages
 
@@ -18,12 +22,10 @@ namespace PortfolioWebApp.Components.Pages
 
         private WeatherHistory? weatherHistory;
 
-        [Inject]
-        public IWeatherHistoryRepository? weatherHistoryRepository { get; set; }
-
-        // to HIDE later
         private string API_KEY = "a48e893f5b18eec63e166b52def1e3b0";
 
+        [Inject]
+        public IWeatherHistoryRepository? weatherHistoryRepository { get; set; }
 
         [SupplyParameterFromForm]
         protected string cityName { get;   set; }
@@ -44,6 +46,7 @@ namespace PortfolioWebApp.Components.Pages
             public MainData Main { get; set; }
             public WindData Wind { get; set; }
             public List<WeatherDescription> Weather { get; set; }
+            public SysData Sys { get; set; }
             public string Name { get; set; } = string.Empty;
 
         }
@@ -75,6 +78,11 @@ namespace PortfolioWebApp.Components.Pages
             public decimal Lon { get; set; }
         }
 
+        public class SysData
+        {
+            public string Country { get; set; }
+        }
+
         public async Task GetCurrWeather(decimal lat, decimal lon)
         {
             try
@@ -87,8 +95,8 @@ namespace PortfolioWebApp.Components.Pages
                     
                     weatherHistory = new WeatherHistory();
                     weatherHistory.DateTime = DateTime.Now;
-                    weatherHistory.Country = countryCode;
-                    weatherHistory.City = cityName;
+                    weatherHistory.Country = response.Sys.Country;
+                    weatherHistory.City = response.Name;
                     weatherHistory.Lat = location.Lat;
                     weatherHistory.Lon = location.Lon;
                     weatherHistory.Description = response.Weather[0].Main;

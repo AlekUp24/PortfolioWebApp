@@ -2,11 +2,11 @@
 {
     public class InnovationIdeas
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public IdeaCategory category { get; set; }
-        public bool implemented { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public IdeaCategory Category { get; set; }
+        public bool Implemented { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime LastUpdated { get; set; }
     }
