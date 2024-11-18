@@ -67,5 +67,11 @@ namespace PortfolioWebApp.Repositories
             idea.LastUpdated = DateTime.Now;
             await _appDbContext.SaveChangesAsync();
         }
+
+        public async Task RefreshLastUpdated(InnovationIdeas idea)
+        {
+            idea.LastUpdated = DateTime.Now;
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }

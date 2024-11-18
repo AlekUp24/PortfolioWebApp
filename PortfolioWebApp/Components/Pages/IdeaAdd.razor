@@ -2,7 +2,7 @@
 @rendermode InteractiveServer
 @using PortfolioWebApp.Models
 
-<h3>IdeaAdd</h3>
+<PageTitle>Add Ideas</PageTitle>
 
 
 @if (@isNewSubmission)
@@ -13,7 +13,7 @@
         <EditForm Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
 
             <div class="text-lg-center my-2">
-                    <h3>Description of that form - what is it for?</h3>
+                    <h3 class="mx-2 my-4">Got an idea to share? <br />Simply fill out the form, and it will be added to the list of existing ideas!</h3>
                 </div>
 
                 <div class="row mb-3">
