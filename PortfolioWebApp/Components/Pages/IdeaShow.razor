@@ -3,7 +3,18 @@
 @inject NavigationManager Navigation
 @using PortfolioWebApp.Models
 
-<h3>IdeaShow</h3>
+<PageTitle>Show Ideas</PageTitle>
+
+<center>
+
+    <h2 class="my-5 mx-auto">Take a look at existing ideas.</h2>
+
+    <p class="mb-5 lh-lg">
+            Explore all the ideas submitted so far! You can seamlessly update their status without needing to reload the page. <br />
+            Deleting ideas is also an option, but please be cautious—this action cannot be undone. Feel free to explore 'Edit' option.
+    </p>
+
+</center>
 
 @if (AllIdeas == null)
 {

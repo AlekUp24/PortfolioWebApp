@@ -13,5 +13,7 @@ namespace PortfolioWebApp.Contracts
         Task DeleteIdea(int ideaId);
 
         Task ChangeStatus(InnovationIdeas idea);
+
+        Task RefreshLastUpdated(InnovationIdeas idea);
     }
 }
