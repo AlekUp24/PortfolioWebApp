@@ -22,7 +22,7 @@ namespace PortfolioWebApp.Components.Pages
 
         private WeatherHistory? weatherHistory;
 
-        private string API_KEY = "a48e893f5b18eec63e166b52def1e3b0";
+        private string API_KEY = "";
 
         [Inject]
         public IWeatherHistoryRepository? weatherHistoryRepository { get; set; }
@@ -39,6 +39,7 @@ namespace PortfolioWebApp.Components.Pages
         protected async override Task OnInitializedAsync()
         {
             firstLoad = true;
+            API_KEY = _config.GetValue<string>("WeatherAPiKey");
         }
 
         public class WeatherData
