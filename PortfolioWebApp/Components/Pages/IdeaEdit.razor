@@ -17,6 +17,10 @@ else
     
         <EditForm Enhance Model="EditedIdea">
 
+            <div class="text-lg-center my-2">
+                <h3 class="mx-2 my-4">Edit or Delete Idea</h3><br />
+            </div>
+
                 <div class="row mb-3">
                     <label for="name" class="col-form-label col-md-3">Name: </label>
                         <div class="col-md-8">
@@ -44,8 +48,12 @@ else
                 </div>
 
             <center>
-                <button type="submit" class="btn btn-primary mx-2 col-3 mt-3 text-lg-center" @onclick="() => NavigateToIdeaShow()">Save Changes</button>
-                <button type="button" class="btn btn-danger mx-2 col-3 mt-3 text-lg-center" @onclick="() => DeleteIdea(EditedIdea.Id)">Delete</button>
+                <button type="submit" class="btn btn-primary mx-2 col-3 mt-3 text-lg-center" @onclick="() => NavigateToIdeaShow()">
+                    <strong><i class="bi bi-floppy"></i> Save Changes</strong>
+                </button>
+                <button type="button" class="btn btn-danger mx-2 col-3 mt-3 text-lg-center" @onclick="() => DeleteIdea(EditedIdea.Id)">
+                    <strong><i class="bi bi-trash"></i> Delete</strong>
+                </button>
             </center>
 
         </EditForm>
