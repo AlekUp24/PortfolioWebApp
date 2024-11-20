@@ -3,6 +3,7 @@ using PortfolioWebApp.Contracts;
 using PortfolioWebApp.Data;
 using PortfolioWebApp.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortfolioWebApp.Components.Pages
 {
@@ -11,13 +12,18 @@ namespace PortfolioWebApp.Components.Pages
         [Inject]
         public IInnovationIdeasRepository? innovationIdeasRepository { get; set; }
 
-        private InnovationIdeas model = new InnovationIdeas();
+        //private InnovationIdeas model = new InnovationIdeas();
+
+        //[Required]
+        //[StringLength(100, ErrorMessage = "Name is too long. (must be <100)")]
+        //[SupplyParameterFromForm]
+        //protected string Name { get; set; }
 
         [SupplyParameterFromForm]
-        protected string Name { get; set; }
+        public InnovationIdeas model { get; set; } = new InnovationIdeas();
 
-        [SupplyParameterFromForm]
-        protected string Description { get; set; }
+        //[SupplyParameterFromForm]
+        //protected string Description { get; set; }
 
         [SupplyParameterFromForm]
         protected IdeaCategory Category { get; set; }
@@ -43,8 +49,8 @@ namespace PortfolioWebApp.Components.Pages
             }
             else
             {
-                model.Name = Name;
-                model.Description = Description;
+                //model.Name = Name;
+                //model.Description = Description;
                 model.Category = Category;
                 model.Implemented = false;
                 model.CreationTime = DateTime.Now;
@@ -57,8 +63,7 @@ namespace PortfolioWebApp.Components.Pages
         private async Task ResetView()
         {
             isNewSubmission = true;
-            Name = string.Empty;
-            Description = string.Empty;
+            model = new InnovationIdeas();
         }
     }
 }
