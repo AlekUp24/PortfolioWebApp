@@ -9,7 +9,9 @@
 {
 
     <div class="form-container col-10 mx-auto p-5">
-        <EditForm Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
+        <EditForm Enhance Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
+            <DataAnnotationsValidator/>
+            
 
             <div class="text-lg-center my-2">
                 <h3 class="mx-2 my-4">Got an idea to share? <br />Simply fill out the form, and it will be added to the list of existing ideas!</h3><br />
@@ -19,15 +21,17 @@
             <div class="row mb-3">
                 <label for="name" class="col-form-label col-md-3">Name: </label>
                 <div class="col-md-8">
-                    <InputText id="name" class="form-control" @bind-Value="Name" placeholder="Enter Name"></InputText>
+                    <InputText id="name" class="form-control" @bind-Value="model.Name" placeholder="Enter Name"></InputText>
                 </div>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => model.Name)"/>
             </div>
 
             <div class="row mb-3">
                 <label for="description" class="col-form-label col-md-3">Description: </label>
                 <div class="col-md-8">
-                    <InputTextArea id="name" class="form-control" @bind-Value="Description" placeholder="Enter Description"></InputTextArea>
+                    <InputTextArea id="name" class="form-control" @bind-Value="model.Description" placeholder="Enter Description"></InputTextArea>
                 </div>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => model.Description)" />
             </div>
 
             <div class="row mb-3">

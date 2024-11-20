@@ -11,7 +11,7 @@ namespace PortfolioWebApp.Components.Pages
         public int IdeaId { get; set; }
 
         [SupplyParameterFromForm]
-        public InnovationIdeas EditedIdea { get; set; } = new();
+        public InnovationIdeas EditedIdea { get; set; } = new InnovationIdeas();
 
 
         [Inject]
