@@ -14,5 +14,6 @@
         public decimal WindSpeed { get; set; }
         public decimal Humidity { get; set; }
         public decimal Pressure { get; set; }
+        public string IconUrl { get; set; }
     }
 }

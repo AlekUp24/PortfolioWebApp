@@ -1,4 +1,5 @@
-﻿using PortfolioWebApp.Infrastructure.Configurations.AutoMapper;
+﻿using Microsoft.Extensions.Configuration;
+using PortfolioWebApp.Infrastructure.Configurations.AutoMapper;
 
 namespace PortfolioWebApp.Infrastructure
 {

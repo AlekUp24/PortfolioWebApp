@@ -1,7 +1,6 @@
 ﻿@page "/weather"
-@inject HttpClient Http
-@inject IConfiguration _config
 @rendermode InteractiveServer
+@inherits PortfolioWebApp.Data.Weather.WeatherBase
 
 <PageTitle>My Weather API </PageTitle>
 
@@ -9,9 +8,8 @@
 
     <h2 class="my-5 mx-auto">Page for checking the weather around the World!</h2>
 
-    <h2>Under reconstruction...</h2>
 
- @*    <p class="mb-5 lh-lg">
+    <p class="mb-5 lh-lg">
             This page retrieves data from an external API (using an API key) provided by '<a href="https://api.openweathermap.org" target="_blank">https://api.openweathermap.org</a>'. <br />
         The data is fetched with injected HttpClient and page is using InteractiveServer render mode. <br />
         Each time the user clicks the <strong>'Get Weather'</strong> button, the API is called to obtain the necessary longitude and latitude for the provided location. <br />
@@ -32,54 +30,51 @@
             <div class="form-control">
                 <label>
                     Country:<br />
-                    <InputText @bind-Value="countryCode" />
+                    <InputText @bind-Value="countryCode"/>
                 </label>
                 <label>City:<br />
                         <InputText @bind-Value="cityName"/>
                 </label>
             </div>
-                <button class="btn btn-warning mx-2 col-4 mt-3 text-lg-center" onclick="@GetLanLon"><strong><i class="bi bi-thermometer-sun"></i> Get Weather</strong></button>
+            <button class="btn btn-warning mx-2 col-4 mt-3 text-lg-center" onclick="@GetLanLon"><strong><i class="bi bi-thermometer-sun"></i> Get Weather</strong></button>
         </form>
    
+    @if ( !firstLoad) {
 
-    @if (!firstLoad)
-    {
-
-        @if (response == null && locationFound)
+        @if (response == null && !locationFound)
         {
             <div class="spinner-border mt-4" style="width: 4rem; height: 4rem;" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         }
-
-        else if(response == null && !locationFound)
+        else if (response != null && locationFound)
         {
-                <h5 class="font-monospace mt-4">Ups... Seems like given location hasn't been found. Please try again.</h5>
+            <h5 class="font-monospace mt-4">Currently in @response.City:</h5>
+            <div class="result-container">
+                <p style="font-size: 1.5em;">@response.Description</p>
+                <img class="weather-icon" src=@response.IconUrl alt="Weather Icon">
+                <p style="font-size: 1.5em;">Temp: @response.Temperature.ToString("0.0") °C (feels like @response.FeelsLike.ToString("0.0") °C)</p>
+
+                <div class="weather-additional-info">
+                    <div class="weather-additional-info-column">
+                        Wind: <br> @response.WindSpeed.ToString("0.0") km/h
+                    </div>
+                    <div class="weather-additional-info-column">
+                        Humidity: <br> @response.Humidity.ToString("0") %
+                    </div>
+                    <div class="weather-additional-info-column">
+                        Pressure: <br> @response.Pressure.ToString("0.0") hPa
+                    </div>
+                </div>
+            </div>
         }
         else
         {
-                <h5 class="font-monospace mt-4">Currently in @response.Name:</h5>
-                    <div class="result-container">
-                        <p style="font-size: 1.5em;">@response.Weather[0].Main</p>
-                        <img class="weather-icon" src=@iconUrl alt="Weather Icon">
-                    <p style="font-size: 1.5em;">Temp: @response.Main.Temp.ToString("0.0") °C (feels like @response.Main.Feels_Like.ToString("0.0") °C)</p>
-
-                    <div class="weather-additional-info">
-                        <div class="weather-additional-info-column">
-                            Wind: <br> @response.Wind.Speed.ToString("0.0") km/h
-                        </div>
-                        <div class="weather-additional-info-column">
-                                Humidity: <br> @response.Main.Humidity.ToString("0") %
-                            </div >
-                        <div class="weather-additional-info-column">
-                                Pressure: <br> @response.Main.Pressure.ToString("0.0") hPa
-                            </div>
-                        </div>
-                    </div>
-        }      
+            <h5 class="font-monospace mt-4">Ups... Seems like given location hasn't been found. Please try again.</h5>
+        }
     }
     </div>
- *@
+
 
 </center>
 

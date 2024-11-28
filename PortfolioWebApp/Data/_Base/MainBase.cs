@@ -20,10 +20,7 @@
         [Inject]
         public IIdeasShowService IdeasShowService { get; set; } = default!;
 
-        //[Inject]
-        //public IWeatherService WeatherService { get; set; } = default!;
-
         [Inject]
-        public IConfiguration _config { get; set; } = default!;
+        public IWeatherService WeatherService { get; set; } = default!;
     }
 }

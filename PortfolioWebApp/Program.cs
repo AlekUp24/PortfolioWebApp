@@ -1,5 +1,4 @@
 
-using PortfolioWebApp.Services.Jokes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +29,7 @@ builder.Services.AddScoped<IIdeaAddService, IdeaAddService>();
 builder.Services.AddScoped<IIdeaEditService, IdeaEditService>();
 builder.Services.AddScoped<IIdeasShowService, IdeasShowService>();
 // add weather
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 
 

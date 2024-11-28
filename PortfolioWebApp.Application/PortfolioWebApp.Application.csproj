@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Weather\Commands\" />
-    <Folder Include="Features\Weather\Handlers\" />
-    <Folder Include="Features\Weather\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
