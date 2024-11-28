@@ -12,3 +12,7 @@ global using PortfolioWebApp.Application.Features.Ideas.Commands;
 global using PortfolioWebApp.Application.Features.Ideas.Queries;
 global using PortfolioWebApp.Domain.Entities.Ideas;
 global using PortfolioWebApp.Domain.Interfaces.Ideas;
+global using PortfolioWebApp.Common.Models.Models;
+global using PortfolioWebApp.Application.Features.Weather.Queries;
+global using PortfolioWebApp.Domain.Entities.Weather;
+global using PortfolioWebApp.Domain.Interfaces.Weather;

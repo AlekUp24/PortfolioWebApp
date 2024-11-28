@@ -22,3 +22,6 @@ global using PortfolioWebApp.Application.Services.Weather;
 global using PortfolioWebApp.Common.Models.Models;
 global using System.Globalization;
 global using Microsoft.AspNetCore.Components.QuickGrid;
+global using PortfolioWebApp.Application.Features.Weather.Queries;
+global using PortfolioWebApp.Services.Jokes;
+global using PortfolioWebApp.Services.Weather;

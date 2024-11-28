@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PortfolioWebApp.Domain\PortfolioWebApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -2,7 +2,7 @@
 {
     public partial class SmallCalendar
     {
-        private string DisplayCalendar = string.Empty;
+                    private string DisplayCalendar = string.Empty;
         private DateTime CurrentDateTime { get; set; }
 
 
