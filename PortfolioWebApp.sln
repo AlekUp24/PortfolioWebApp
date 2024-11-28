@@ -21,13 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7AFC33
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D25209B2-1AA8-4D3D-9036-E8CB9CD344B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioWebApp.Application", "PortfolioWebApp.Application\PortfolioWebApp.Application.csproj", "{6EEF60A7-8DA4-419F-8193-F1926D6C9FB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioWebApp.Application", "PortfolioWebApp.Application\PortfolioWebApp.Application.csproj", "{6EEF60A7-8DA4-419F-8193-F1926D6C9FB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioWebApp.Common", "PortfolioWebApp.Common\PortfolioWebApp.Common.csproj", "{C38A8CFE-B02C-4E86-B9A0-E6BE387AF269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioWebApp.Common", "PortfolioWebApp.Common\PortfolioWebApp.Common.csproj", "{C38A8CFE-B02C-4E86-B9A0-E6BE387AF269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioWebApp.Domain", "PortfolioWebApp.Domain\PortfolioWebApp.Domain.csproj", "{B783F76C-D3E4-4F12-8F05-DD3C04117406}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioWebApp.Domain", "PortfolioWebApp.Domain\PortfolioWebApp.Domain.csproj", "{B783F76C-D3E4-4F12-8F05-DD3C04117406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioWebApp.Infrastructure", "PortfolioWebApp.Infrastructure\PortfolioWebApp.Infrastructure.csproj", "{B47C31FA-BF15-416A-8F6E-4907183D8EDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioWebApp.Infrastructure", "PortfolioWebApp.Infrastructure\PortfolioWebApp.Infrastructure.csproj", "{B47C31FA-BF15-416A-8F6E-4907183D8EDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

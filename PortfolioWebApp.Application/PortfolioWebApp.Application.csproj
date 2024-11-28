@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PortfolioWebApp.Domain\PortfolioWebApp.Domain.csproj" />
+    <ProjectReference Include="..\PortfolioWebApp.Infrastructure\PortfolioWebApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Weather\Commands\" />
+    <Folder Include="Features\Weather\Handlers\" />
+    <Folder Include="Features\Weather\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
 </Project>

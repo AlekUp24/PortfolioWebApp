@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="tests\**" />
+    <Content Remove="tests\**" />
+    <EmbeddedResource Remove="tests\**" />
+    <None Remove="tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
@@ -18,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="tests\" />
+    <ProjectReference Include="..\PortfolioWebApp.Application\PortfolioWebApp.Application.csproj" />
+    <ProjectReference Include="..\PortfolioWebApp.Infrastructure\PortfolioWebApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

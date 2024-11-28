@@ -1,9 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using PortfolioWebApp.Components;
-using PortfolioWebApp.Contracts;
-using PortfolioWebApp.Data;
-using PortfolioWebApp.Repositories;
-using Radzen;
+
+using PortfolioWebApp.Services.Jokes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +11,7 @@ builder.Services.AddRazorComponents().
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContextFactory<AppDbContext>(options =>
+builder.Services.AddDbContextFactory<PortfolioWebApp.Infrastructure.Database.AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddRadzenComponents();
@@ -23,9 +19,19 @@ builder.Services.AddRadzenComponents();
 // add Http Client
 builder.Services.AddScoped<HttpClient>();
 
-// add Interface and Repo
-builder.Services.AddScoped<IWeatherHistoryRepository, WeatherHistoryRepository>();
-builder.Services.AddScoped<IInnovationIdeasRepository, InnovationIdeasRepository>();
+
+// add Application Dependencies
+builder.Services.AddApplication();
+// add Infrastructure Dependencies
+builder.Services.AddInfrustructure();
+
+builder.Services.AddScoped<IJokesService, JokesService>();
+builder.Services.AddScoped<IIdeaAddService, IdeaAddService>();
+builder.Services.AddScoped<IIdeaEditService, IdeaEditService>();
+builder.Services.AddScoped<IIdeasShowService, IdeasShowService>();
+// add weather
+
+
 
 var app = builder.Build();
 

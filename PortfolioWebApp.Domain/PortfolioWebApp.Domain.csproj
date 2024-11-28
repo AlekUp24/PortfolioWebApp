@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PortfolioWebApp.Common\PortfolioWebApp.Common.csproj" />
+  </ItemGroup>
+
 </Project>
