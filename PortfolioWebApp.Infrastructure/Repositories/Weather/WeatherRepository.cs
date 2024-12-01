@@ -1,4 +1,6 @@
-﻿namespace PortfolioWebApp.Infrastructure.Repositories.Weather
+﻿using PortfolioWebApp.Infrastructure.Database;
+
+namespace PortfolioWebApp.Infrastructure.Repositories.Weather
 {
     public class WeatherRepository : IWeatherRepository, IDisposable
     {
@@ -61,7 +63,6 @@
             public string Country { get; set; }
         }
 
-
         public void Dispose()
         {
             _appDbContext.Dispose();
@@ -70,6 +71,54 @@
         public async Task<IEnumerable<WeatherHistoryEntity>> GetAllWeatherHistory()
         {
             return await _appDbContext.WeatherHistory.ToListAsync();
+        }
+
+        public async Task<WeatherHistoryEntity> GetLanLon(string cityName, string stateCode, string countryCode)
+        {
+            firstLoad = false;
+            locationFound = true;
+            response = null;
+
+
+                var locationDataList = await _httpClient.GetFromJsonAsync<List<LocationData>>($"http://api.openweathermap.org/geo/1.0/direct?q={cityName},{stateCode},{countryCode}&appid={API_KEY}");
+                location = locationDataList?.FirstOrDefault();
+
+                if (location != null)
+                {
+                        response = await _httpClient.GetFromJsonAsync<WeatherData>($"https://api.openweathermap.org/data/2.5/weather?lat={location.Lat}&lon={location.Lon}&appid={API_KEY}&units=metric");
+
+                        if (response != null && response.Weather.Any())
+                        {
+                            iconUrl = "https://openweathermap.org/img/wn/" + response.Weather[0].Icon + "@2x.png";
+
+                            WeatherHistoryEntity weatherHistory = new WeatherHistoryEntity() { 
+                                DateTime = DateTime.Now, 
+                                IconUrl = iconUrl,
+                                Country = response.Sys.Country,
+                                City = response.Name,
+                                Lat = location.Lat,
+                                Lon = location.Lon,
+                                Description = response.Weather[0].Main,
+                                Temperature = response.Main.Temp,
+                                FeelsLike = response.Main.Feels_Like,
+                                WindSpeed = response.Wind.Speed,
+                                Humidity = Math.Round(response.Main.Humidity, 2),
+                                Pressure = Math.Round(response.Main.Pressure, 2) };
+
+                            await AddToWeatherHistory(weatherHistory);
+                            return weatherHistory;
+                        } 
+                        else
+                        {
+                        response = null;
+                        return null;
+                        }
+                }
+                else
+                {
+                    locationFound = false;
+                    return null;
+                }
         }
 
         public async Task<WeatherHistoryEntity> AddToWeatherHistory(WeatherHistoryEntity weatherHistory)
@@ -96,68 +145,5 @@
             await _appDbContext.SaveChangesAsync();
             return toBeAdded.Entity;
         }
-
-        public async Task<WeatherHistoryEntity> GetLanLon(string cityName, string stateCode, string countryCode)
-        {
-            firstLoad = false;
-            locationFound = true;
-            response = null;
-
-            try
-            {
-                var locationDataList = await _httpClient.GetFromJsonAsync<List<LocationData>>($"http://api.openweathermap.org/geo/1.0/direct?q={cityName},{stateCode},{countryCode}&appid={API_KEY}");
-                location = locationDataList?.FirstOrDefault();
-
-                if (location != null)
-                {
-                    try
-                    {
-                        response = await _httpClient.GetFromJsonAsync<WeatherData>($"https://api.openweathermap.org/data/2.5/weather?lat={location.Lat}&lon={location.Lon}&appid={API_KEY}&units=metric");
-
-                        if (response != null && response.Weather.Any())
-                        {
-                            iconUrl = "https://openweathermap.org/img/wn/" + response.Weather[0].Icon + "@2x.png";
-
-                            WeatherHistoryEntity weatherHistory = new WeatherHistoryEntity();
-                            weatherHistory.DateTime = DateTime.Now;
-                            weatherHistory.IconUrl = iconUrl;
-                            weatherHistory.Country = response.Sys.Country;
-                            weatherHistory.City = response.Name;
-                            weatherHistory.Lat = location.Lat;
-                            weatherHistory.Lon = location.Lon;
-                            weatherHistory.Description = response.Weather[0].Main;
-                            weatherHistory.Temperature = response.Main.Temp;
-                            weatherHistory.FeelsLike = response.Main.Feels_Like;
-                            weatherHistory.WindSpeed = response.Wind.Speed;
-                            weatherHistory.Humidity = Math.Round(response.Main.Humidity, 2);
-                            weatherHistory.Pressure = Math.Round(response.Main.Pressure, 2);
-
-                            await AddToWeatherHistory(weatherHistory);
-                            return weatherHistory;
-
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        response = null;
-                        return null;
-                    }
-                    return null;
-                }
-                else
-                {
-                    locationFound = false;
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                locationFound = false;
-                return null;
-            }
-        }
     }
-
-
-
 }
