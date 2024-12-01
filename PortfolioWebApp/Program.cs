@@ -28,10 +28,7 @@ builder.Services.AddScoped<IJokesService, JokesService>();
 builder.Services.AddScoped<IIdeaAddService, IdeaAddService>();
 builder.Services.AddScoped<IIdeaEditService, IdeaEditService>();
 builder.Services.AddScoped<IIdeasShowService, IdeasShowService>();
-// add weather
 builder.Services.AddScoped<IWeatherService, WeatherService>();
-
-
 
 var app = builder.Build();
 
