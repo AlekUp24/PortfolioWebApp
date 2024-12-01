@@ -1,7 +1,6 @@
 ﻿@page "/weatherApiCallsHistory"
-@using Microsoft.AspNetCore.Components.QuickGrid
-@inject HttpClient Http
 @rendermode InteractiveServer
+@inherits PortfolioWebApp.Data.Weather.WeatherHistoryBase
 
 <PageTitle>Weather API History</PageTitle>
 
@@ -16,9 +15,7 @@
 
     </p>
 
-    <h2>Under reconstruction...</h2>
-
-@*     <h2 class="my-4 font-monospace">Weather History:</h2>
+    <h2 class="my-4 font-monospace">Weather History:</h2>
 
     @if (@historyCount > 0)
     {   
@@ -28,18 +25,23 @@
                PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                Data="@itemsWeatherHistory" ColumnWidth="300px" class="rounded">
                 <Columns>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.DateTime)" Filterable="false" Title="DateTime" FormatString="{0:yyyy/MM/dd ' - ' hh:mm}" Frozen="true" Width="200px"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Country)" Title="Country" Frozen="true" Width="160px" />
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.City)" Title="City" Frozen="true" Width="160px"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Description)" Title="Description" Frozen="true" Width="150px" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.DateTime)" Filterable="false" Title="DateTime" FormatString="{0:yyyy/MM/dd ' - ' hh:mm}" Frozen="true" Width="200px"/>
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Country)" Title="Country" Frozen="true" Width="120px" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.City)" Title="City" Frozen="true" Width="160px" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Description)" Title="Description" Frozen="true" Width="150px" />
 
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Temperature)" Title="Temperature" FormatString="{0} °C" Filterable="false" Width="150px" TextAlign="TextAlign.Right" />
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.FeelsLike)" Title="Feels Like" FormatString="{0} °C" Filterable="false" Width="150px" TextAlign="TextAlign.Right"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.WindSpeed)" Title="Wind Speed" FormatString="{0} km/h" Filterable="false" Width="150px" TextAlign="TextAlign.Right"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Humidity)" Title="Humidity" FormatString="{0} %" Filterable="false" Width="150px" TextAlign="TextAlign.Right"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Pressure)" Title="Pressure" FormatString="{0} hPa" Filterable="false" Width="150px" TextAlign="TextAlign.Right"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Lat)" Filterable="false" Title="Lat" Width="100px" TextAlign="TextAlign.Center"/>
-                    <RadzenDataGridColumn Property="@nameof(WeatherHistory.Lon)" Filterable="false" Title="Lon" Width="100px" TextAlign="TextAlign.Center"/>
+                    <RadzenDataGridColumn Title="Icon" Filterable="false" Width="70px" TextAlign="TextAlign.Left">
+                        <Template Context="data">
+                            <img src="@data.IconUrl" alt="Weather Icon" width="30" height="30" />
+                        </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Temperature)" Title="Temperature" FormatString="{0} °C" Filterable="false" Width="120px" TextAlign="TextAlign.Right" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.FeelsLike)" Title="Feels Like" FormatString="{0} °C" Filterable="false" Width="150px" TextAlign="TextAlign.Right"/>
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.WindSpeed)" Title="Wind Speed" FormatString="{0} km/h" Filterable="false" Width="150px" TextAlign="TextAlign.Right" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Humidity)" Title="Humidity" FormatString="{0} %" Filterable="false" Width="150px" TextAlign="TextAlign.Right" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Pressure)" Title="Pressure" FormatString="{0} hPa" Filterable="false" Width="150px" TextAlign="TextAlign.Right" />
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Lat)" Filterable="false" Title="Lat" Width="100px" TextAlign="TextAlign.Center"/>
+                    <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Lon)" Filterable="false" Title="Lon" Width="100px" TextAlign="TextAlign.Center" />
                 </Columns>
             </RadzenDataGrid> 
         </div>
@@ -47,5 +49,5 @@
     else
     {
         <h4>No history data found. Please use API calls to generate history.</h4>
-    } *@
+    }
 </center>

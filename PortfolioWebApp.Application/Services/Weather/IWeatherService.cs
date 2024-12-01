@@ -3,5 +3,6 @@
     public interface IWeatherService
     {
         Task<WeatherHistoryModel> GetCurrWeather(string City, string SCode, string CCode);
+        Task<IQueryable<WeatherHistoryModel>> GetAllWeatherHistory();
     }
 }
