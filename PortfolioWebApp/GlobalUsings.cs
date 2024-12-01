@@ -25,3 +25,4 @@ global using Microsoft.AspNetCore.Components.QuickGrid;
 global using PortfolioWebApp.Application.Features.Weather.Queries;
 global using PortfolioWebApp.Services.Jokes;
 global using PortfolioWebApp.Services.Weather;
+global using Microsoft.AspNetCore.Components.QuickGrid;
