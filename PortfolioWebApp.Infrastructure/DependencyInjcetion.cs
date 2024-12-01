@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using PortfolioWebApp.Infrastructure.Configurations.AutoMapper;
-
-namespace PortfolioWebApp.Infrastructure
+﻿namespace PortfolioWebApp.Infrastructure
 {
     public static class DependencyInjcetion
     {
