@@ -1,6 +1,4 @@
-﻿using PortfolioWebApp.Application.Features.Weather;
-
-namespace PortfolioWebApp.Services.Weather
+﻿namespace PortfolioWebApp.Services.Weather
 {
     public class WeatherService : IWeatherService
     {
