@@ -38,8 +38,9 @@
                 model.CreationTime = DateTime.Now;
                 model.LastUpdated = DateTime.Now;
 
-                await IdeaAddService.AddToIdeas(model);
                 isNewSubmission = false;
+                await IdeaAddService.AddToIdeas(model);
+                
             }
         }
 
