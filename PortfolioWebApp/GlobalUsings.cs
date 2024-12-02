@@ -12,7 +12,7 @@ global using Microsoft.AspNetCore.Components;
 global using PortfolioWebApp.Application.Features.Jokes.Queries;
 global using PortfolioWebApp.Common.Models.Jokes;
 global using PortfolioWebApp.Common.Models.Ideas;
-global using PortfolioWebApp.Common.Enums.Ideas;
+global using PortfolioWebApp.Common.Enums;
 global using PortfolioWebApp.Application.Services.Ideas;
 global using PortfolioWebApp.Application.Features.Ideas.Commands;
 global using PortfolioWebApp.Application.Features.Ideas.Queries;
