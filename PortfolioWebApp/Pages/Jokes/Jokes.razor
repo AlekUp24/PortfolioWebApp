@@ -17,15 +17,15 @@
 
     <div class="card widget-style mx-auto">
         <h2 class="card-title text-dark mb-3 mt-2">Here is your joke:</h2>
-            @if (response != null)
+            @if (Response != null)
             {
             <div class="card-body">
-                <h5 class="my-4">@response.Setup</h5>
-                <h5 class="my-4"><i>@hiddenPunchline</i></h5>
+                <h5 class="my-4">@Response.Setup</h5>
+                <h5 class="my-4"><i>@HiddenPunchline</i></h5>
             </div>
 
             <div class="mb-3">
-                <button class="@btnAttribute mx-2 col-4" onclick="@GetPunchline">
+                <button class="@BtnAttribute mx-2 col-4" onclick="@GetPunchline">
                     <strong><i class="bi bi-magic"></i> Show Punchline</strong>
                   </button>
                 <button class="btn btn-warning mx-2 col-4" onclick="@NextJokeAsync">

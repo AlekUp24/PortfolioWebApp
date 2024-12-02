@@ -18,11 +18,11 @@ public class IdeaAddBase : MainBase
     [SupplyParameterFromForm]
     public DateTime LastUpdated { get; set; }
 
-    public bool isNewSubmission { get; set; }
+    public bool IsNewSubmission { get; set; }
 
     protected override void OnInitialized()
     {
-        isNewSubmission = true;
+        IsNewSubmission = true;
     }
 
     public async Task AddIdeaFromForm()
@@ -38,7 +38,7 @@ public class IdeaAddBase : MainBase
             Model.CreationTime = DateTime.Now;
             Model.LastUpdated = DateTime.Now;
 
-            isNewSubmission = false;
+            IsNewSubmission = false;
             await IdeaAddService.AddToIdeas(Model);
             
         }
@@ -46,7 +46,7 @@ public class IdeaAddBase : MainBase
 
     public async Task ResetView()
     {
-        isNewSubmission = true;
+        IsNewSubmission = true;
         Model = new InnovationIdeasModel();
     }
 }

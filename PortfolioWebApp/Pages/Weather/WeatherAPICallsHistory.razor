@@ -17,13 +17,13 @@
 
     <h2 class="my-4 font-monospace">Weather History:</h2>
 
-    @if (@historyCount > 0)
+    @if (@HistoryCount > 0)
     {   
         <div class="container col-12 container-fluid">
             <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" 
                FilterMode="FilterMode.Simple" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
                PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
-               Data="@itemsWeatherHistory" ColumnWidth="300px" class="rounded">
+               Data="@ItemsWeatherHistory" ColumnWidth="300px" class="rounded">
                 <Columns>
                     <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.DateTime)" Filterable="false" Title="DateTime" FormatString="{0:yyyy/MM/dd ' - ' hh:mm}" Frozen="true" Width="200px"/>
                     <RadzenDataGridColumn Property="@nameof(WeatherHistoryModel.Country)" Title="Country" Frozen="true" Width="120px" />

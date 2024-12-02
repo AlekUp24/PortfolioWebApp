@@ -3,9 +3,9 @@
 public class WeatherHistoryBase : MainBase
 {
 
-    protected IQueryable<WeatherHistoryModel>? itemsWeatherHistory;
-    protected int historyCount;
-    public PaginationState pagination = new() { ItemsPerPage = 10 };
+    protected IQueryable<WeatherHistoryModel>? ItemsWeatherHistory;
+    protected int HistoryCount;
+    public PaginationState Pagination = new() { ItemsPerPage = 10 };
 
     private string _searchQuery = string.Empty;
     
@@ -21,27 +21,27 @@ public class WeatherHistoryBase : MainBase
 
     protected async override Task OnInitializedAsync()
     {
-        itemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
+        ItemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
             .OrderByDescending(x => x.DateTime).AsQueryable();
-        historyCount = itemsWeatherHistory.Count();
+        HistoryCount = ItemsWeatherHistory.Count();
     }
 
     private async Task SearchWeatherHistory()
     {
         if (!string.IsNullOrEmpty(_searchQuery))
         {
-            itemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
+            ItemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
                 .OrderByDescending(x => x.DateTime)
                 .Where(x => x.Country.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ||
                             x.City.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase)).AsQueryable();
         }
         else
         {
-            itemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
+            ItemsWeatherHistory = (await WeatherService.GetAllWeatherHistory())
                 .OrderByDescending(x => x.DateTime).AsQueryable();
         }
 
-        historyCount = itemsWeatherHistory.Count();
+        HistoryCount = ItemsWeatherHistory.Count();
         StateHasChanged();
     }
 

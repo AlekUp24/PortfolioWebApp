@@ -2,31 +2,31 @@
 
 public class WeatherBase : MainBase
 {
-    public bool firstLoad;
-    public bool locationFound;
-    public WeatherHistoryModel? response;
+    public bool FirstLoad;
+    public bool LocationFound;
+    public WeatherHistoryModel? Response;
 
     [SupplyParameterFromForm]
-    public string cityName { get; set; }
+    public string CityName { get; set; }
     [SupplyParameterFromForm]
-    public string stateCode { get; set; }
+    public string StateCode { get; set; }
     [SupplyParameterFromForm]
-    public string countryCode { get; set; }
+    public string CountryCode { get; set; }
 
 
     protected async override Task OnInitializedAsync()
     {
-        firstLoad = true;
+        FirstLoad = true;
     }
     
     public async Task GetLanLon()
     {
-        locationFound = false;
-        response = null;
-        firstLoad = false;
+        LocationFound = false;
+        Response = null;
+        FirstLoad = false;
 
-        response = await WeatherService.GetCurrWeather(cityName, stateCode, countryCode);
+        Response = await WeatherService.GetCurrWeather(CityName, StateCode, CountryCode);
 
-        locationFound = true;
+        LocationFound = true;
     }
 }

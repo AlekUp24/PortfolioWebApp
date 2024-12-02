@@ -7,11 +7,11 @@ public class WeatherRepository : IWeatherRepository, IDisposable
     private readonly ILogger<WeatherRepository> _logger;
 
     private string API_KEY = "";
-    private WeatherData? response;
-    private LocationData? location;
-    private string iconUrl;
-    private bool firstLoad;
-    private bool locationFound;
+    private WeatherData? Response;
+    private LocationData? Location;
+    private string IconUrl;
+    private bool FirstLoad;
+    private bool LocationFound;
 
     public WeatherRepository(IDbContextFactory<AppDbContext> DbFactory, HttpClient httpClient, ILogger<WeatherRepository> logger)
     {
@@ -75,48 +75,48 @@ public class WeatherRepository : IWeatherRepository, IDisposable
 
     public async Task<WeatherHistoryEntity> GetLanLon(string cityName, string stateCode, string countryCode)
     {
-        firstLoad = false;
-        locationFound = true;
-        response = null;
+        FirstLoad = false;
+        LocationFound = true;
+        Response = null;
 
 
             var locationDataList = await _httpClient.GetFromJsonAsync<List<LocationData>>($"http://api.openweathermap.org/geo/1.0/direct?q={cityName},{stateCode},{countryCode}&appid={API_KEY}");
-            location = locationDataList?.FirstOrDefault();
+            Location = locationDataList?.FirstOrDefault();
 
-            if (location != null)
+            if (Location != null)
             {
-                    response = await _httpClient.GetFromJsonAsync<WeatherData>($"https://api.openweathermap.org/data/2.5/weather?lat={location.Lat}&lon={location.Lon}&appid={API_KEY}&units=metric");
+                    Response = await _httpClient.GetFromJsonAsync<WeatherData>($"https://api.openweathermap.org/data/2.5/weather?lat={Location.Lat}&lon={Location.Lon}&appid={API_KEY}&units=metric");
 
-                    if (response != null && response.Weather.Any())
+                    if (Response != null && Response.Weather.Any())
                     {
-                        iconUrl = "https://openweathermap.org/img/wn/" + response.Weather[0].Icon + "@2x.png";
+                        IconUrl = "https://openweathermap.org/img/wn/" + Response.Weather[0].Icon + "@2x.png";
 
                         WeatherHistoryEntity weatherHistory = new WeatherHistoryEntity() { 
                             DateTime = DateTime.Now, 
-                            IconUrl = iconUrl,
-                            Country = response.Sys.Country,
-                            City = response.Name,
-                            Lat = location.Lat,
-                            Lon = location.Lon,
-                            Description = response.Weather[0].Main,
-                            Temperature = response.Main.Temp,
-                            FeelsLike = response.Main.Feels_Like,
-                            WindSpeed = response.Wind.Speed,
-                            Humidity = Math.Round(response.Main.Humidity, 2),
-                            Pressure = Math.Round(response.Main.Pressure, 2) };
+                            IconUrl = IconUrl,
+                            Country = Response.Sys.Country,
+                            City = Response.Name,
+                            Lat = Location.Lat,
+                            Lon = Location.Lon,
+                            Description = Response.Weather[0].Main,
+                            Temperature = Response.Main.Temp,
+                            FeelsLike = Response.Main.Feels_Like,
+                            WindSpeed = Response.Wind.Speed,
+                            Humidity = Math.Round(Response.Main.Humidity, 2),
+                            Pressure = Math.Round(Response.Main.Pressure, 2) };
 
                         await AddToWeatherHistory(weatherHistory);
                         return weatherHistory;
                     } 
                     else
                     {
-                    response = null;
+                    Response = null;
                     return null;
                     }
             }
             else
             {
-                locationFound = false;
+                LocationFound = false;
                 return null;
             }
     }
