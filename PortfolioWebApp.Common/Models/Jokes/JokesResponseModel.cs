@@ -1,9 +1,7 @@
-﻿namespace PortfolioWebApp.Common.Models.Jokes
+﻿namespace PortfolioWebApp.Common.Models.Jokes;
+
+public class JokesResponseModel
 {
-    public class JokesResponseModel
-    {
-        public string? Setup { get; set; }
-        public string? Punchline { get; set; }
-    }
-    
+    public string? Setup { get; set; }
+    public string? Punchline { get; set; }
 }

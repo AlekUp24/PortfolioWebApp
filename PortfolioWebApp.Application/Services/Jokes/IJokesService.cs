@@ -1,7 +1,6 @@
-﻿namespace PortfolioWebApp.Application.Services.Jokes
+﻿namespace PortfolioWebApp.Application.Services.Jokes;
+
+public interface IJokesService
 {
-    public interface IJokesService
-    {
-        Task<JokesResponseModel> NextJokeAsync();
-    }
+    Task<JokesResponseModel> NextJokeAsync();
 }

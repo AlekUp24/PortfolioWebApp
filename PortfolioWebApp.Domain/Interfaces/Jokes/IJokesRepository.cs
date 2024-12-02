@@ -1,7 +1,6 @@
-﻿namespace PortfolioWebApp.Domain.Interfaces.Jokes
+﻿namespace PortfolioWebApp.Domain.Interfaces.Jokes;
+
+public interface IJokesRepository
 {
-    public interface IJokesRepository
-    {
-        Task<JokesResponseEntity> NextJokeAsync();
-    }
+    Task<JokesResponseEntity> NextJokeAsync();
 }

@@ -1,35 +1,32 @@
-﻿namespace PortfolioWebApp.Data.Weather
+﻿namespace PortfolioWebApp.Data.Weather;
 
+public class WeatherBase : MainBase
 {
-    public class WeatherBase : MainBase
+    public bool firstLoad;
+    public bool locationFound;
+    public WeatherHistoryModel? response;
+
+    [SupplyParameterFromForm]
+    public string cityName { get; set; }
+    [SupplyParameterFromForm]
+    public string stateCode { get; set; }
+    [SupplyParameterFromForm]
+    public string countryCode { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
     {
-        public bool firstLoad;
-        public bool locationFound;
-        public WeatherHistoryModel? response;
+        firstLoad = true;
+    }
+    
+    public async Task GetLanLon()
+    {
+        locationFound = false;
+        response = null;
+        firstLoad = false;
 
-        [SupplyParameterFromForm]
-        public string cityName { get; set; }
-        [SupplyParameterFromForm]
-        public string stateCode { get; set; }
-        [SupplyParameterFromForm]
-        public string countryCode { get; set; }
+        response = await WeatherService.GetCurrWeather(cityName, stateCode, countryCode);
 
-
-        protected async override Task OnInitializedAsync()
-        {
-            firstLoad = true;
-        }
-        
-        public async Task GetLanLon()
-        {
-            locationFound = false;
-            response = null;
-            firstLoad = false;
-
-            response = await WeatherService.GetCurrWeather(cityName, stateCode, countryCode);
-
-            locationFound = true;
-        }
+        locationFound = true;
     }
 }
-

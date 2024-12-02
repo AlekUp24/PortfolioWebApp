@@ -1,9 +1,8 @@
-﻿namespace PortfolioWebApp.Common.Enums.Ideas
+﻿namespace PortfolioWebApp.Common.Enums.Ideas;
+
+public enum IdeaCategoryEnum
 {
-    public enum IdeaCategoryEnum
-    {
-        Design,
-        Performance,
-        Content
-    }
+    Design,
+    Performance,
+    Content
 }

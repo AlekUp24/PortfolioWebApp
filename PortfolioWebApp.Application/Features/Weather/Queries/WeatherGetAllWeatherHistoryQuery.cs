@@ -1,6 +1,5 @@
-﻿namespace PortfolioWebApp.Application.Features.Weather.Queries
+﻿namespace PortfolioWebApp.Application.Features.Weather.Queries;
+
+public class WeatherGetAllWeatherHistoryQuery : IRequest<IQueryable<WeatherHistoryModel>>
 {
-    public class WeatherGetAllWeatherHistoryQuery : IRequest<IQueryable<WeatherHistoryModel>>
-    {
-    }
 }

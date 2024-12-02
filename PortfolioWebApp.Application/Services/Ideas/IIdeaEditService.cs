@@ -1,9 +1,8 @@
-﻿namespace PortfolioWebApp.Application.Services.Ideas
+﻿namespace PortfolioWebApp.Application.Services.Ideas;
+
+public interface IIdeaEditService
 {
-    public interface IIdeaEditService
-    {
-        Task<InnovationIdeasModel> GetIdeaById(int IdeaId);
-        Task DeleteIdea(int ideaId);
-        Task RefreshLastUpdated(InnovationIdeasModel EditedIdea);
-    }
+    Task<InnovationIdeasModel> GetIdeaById(int IdeaId);
+    Task DeleteIdea(int ideaId);
+    Task RefreshLastUpdated(InnovationIdeasModel EditedIdea);
 }
