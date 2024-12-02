@@ -1,4 +1,4 @@
-﻿using PortfolioWebApp.Common.Enums.Ideas;
+﻿using PortfolioWebApp.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace PortfolioWebApp.Common.Models.Ideas;

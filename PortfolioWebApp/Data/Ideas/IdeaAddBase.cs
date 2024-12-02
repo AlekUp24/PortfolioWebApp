@@ -7,7 +7,7 @@ public class IdeaAddBase : MainBase
     public InnovationIdeasModel Model { get; set; } = new InnovationIdeasModel();
 
     [SupplyParameterFromForm]
-    protected IdeaCategoryEnum Category { get; set; }
+    protected IdeaCategoryEnum Category { get; set; } = IdeaCategoryEnum.Design;
 
     [SupplyParameterFromForm]
     protected bool Implemented { get; set; }
