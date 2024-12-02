@@ -13,7 +13,7 @@
 
         public async Task<int> Handle(IdeasDeleteIdeaByIdCommand request, CancellationToken cancellationToken)
         {
-            await _repository.DeleteIdea(request.ideaId);
+            await _repository.DeleteIdea(request.IdeaId);
             return 200;
         }
     }

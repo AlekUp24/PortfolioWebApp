@@ -1,4 +1,5 @@
-﻿using PortfolioWebApp.Infrastructure.Database;
+﻿using Microsoft.Extensions.Logging;
+using PortfolioWebApp.Infrastructure.Database;
 
 namespace PortfolioWebApp.Infrastructure.Repositories.Weather
 {
@@ -6,6 +7,7 @@ namespace PortfolioWebApp.Infrastructure.Repositories.Weather
     {
         public readonly AppDbContext _appDbContext;
         public readonly HttpClient _httpClient;
+        private readonly ILogger<WeatherRepository> _logger;
 
         private string API_KEY = "";
         private WeatherData? response;
@@ -14,10 +16,11 @@ namespace PortfolioWebApp.Infrastructure.Repositories.Weather
         private bool firstLoad;
         private bool locationFound;
 
-        public WeatherRepository(IDbContextFactory<AppDbContext> DbFactory, HttpClient httpClient)
+        public WeatherRepository(IDbContextFactory<AppDbContext> DbFactory, HttpClient httpClient, ILogger<WeatherRepository> logger)
         {
             _appDbContext = DbFactory.CreateDbContext();
             _httpClient = httpClient;
+            _logger = logger;
             API_KEY = "a48e893f5b18eec63e166b52def1e3b0";
         }
 
@@ -138,7 +141,7 @@ namespace PortfolioWebApp.Infrastructure.Repositories.Weather
 
             if (existingRecord != null)
             {
-                Console.WriteLine("Duplicate entry found, not adding to DB");
+                _logger.LogInformation("Duplicate entry found, not adding to DB");
                 return existingRecord;
             }
             var toBeAdded = await _appDbContext.WeatherHistory.AddAsync(weatherHistory);

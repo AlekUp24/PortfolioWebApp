@@ -1,12 +1,16 @@
-﻿namespace PortfolioWebApp.Infrastructure.Repositories.Ideas
+﻿using Microsoft.Extensions.Logging;
+
+namespace PortfolioWebApp.Infrastructure.Repositories.Ideas
 {
     public class InnovationIdeasRepository : IInnovationIdeasRepository, IDisposable
     {
         public readonly AppDbContext _appDbContext;
+        private readonly ILogger<InnovationIdeasRepository> _logger;
 
-        public InnovationIdeasRepository(IDbContextFactory<AppDbContext> DbFactory)
+        public InnovationIdeasRepository(IDbContextFactory<AppDbContext> DbFactory, ILogger<InnovationIdeasRepository> logger)
         {
             _appDbContext = DbFactory.CreateDbContext();
+            _logger = logger;
         }
 
         public void Dispose()
@@ -35,7 +39,7 @@
 
             if (existingRecord != null)
             {
-                Console.WriteLine("Duplicate entry found, not adding to DB");
+                _logger.LogInformation("Duplicate entry found, not adding to DB");
                 return existingRecord;
             }
             else

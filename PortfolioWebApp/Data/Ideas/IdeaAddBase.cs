@@ -4,10 +4,10 @@
     {
 
         [SupplyParameterFromForm]
-        public InnovationIdeasModel model { get; set; } = new InnovationIdeasModel();
+        public InnovationIdeasModel Model { get; set; } = new InnovationIdeasModel();
 
         [SupplyParameterFromForm]
-        protected IdeaCategoryModel Category { get; set; }
+        protected IdeaCategoryEnum Category { get; set; }
 
         [SupplyParameterFromForm]
         protected bool Implemented { get; set; }
@@ -27,19 +27,19 @@
 
         public async Task AddIdeaFromForm()
         {
-            if (model == null)
+            if (Model == null)
             {
-                throw new ArgumentNullException(nameof(model));
+                throw new ArgumentNullException(nameof(Model));
             }
             else
             {
-                model.Category = Category;
-                model.Implemented = false;
-                model.CreationTime = DateTime.Now;
-                model.LastUpdated = DateTime.Now;
+                Model.Category = Category;
+                Model.Implemented = false;
+                Model.CreationTime = DateTime.Now;
+                Model.LastUpdated = DateTime.Now;
 
                 isNewSubmission = false;
-                await IdeaAddService.AddToIdeas(model);
+                await IdeaAddService.AddToIdeas(Model);
                 
             }
         }
@@ -47,7 +47,7 @@
         public async Task ResetView()
         {
             isNewSubmission = true;
-            model = new InnovationIdeasModel();
+            Model = new InnovationIdeasModel();
         }
     }
 }

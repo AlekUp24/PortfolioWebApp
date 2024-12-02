@@ -2,6 +2,6 @@
 {
     public class IdeasRefreshLastUpdatedCommand : IRequest<int>
     {
-        public required InnovationIdeasModel idea { get; set; }
+        public required InnovationIdeasModel Idea { get; set; }
     }
 }

@@ -13,7 +13,7 @@
 
         public async Task<int> Handle(IdeasRefreshLastUpdatedCommand request, CancellationToken cancellationToken)
         {
-            var toRefresh = _mapper.Map<InnovationIdeasModel, InnovationIdeasEntity>(request.idea);
+            var toRefresh = _mapper.Map<InnovationIdeasModel, InnovationIdeasEntity>(request.Idea);
             await _repository.RefreshLastUpdated(toRefresh);
             return 200;
         }

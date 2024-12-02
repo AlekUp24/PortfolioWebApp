@@ -1,4 +1,5 @@
-﻿using PortfolioWebApp.Common.Models.Ideas;
+﻿using PortfolioWebApp.Common.Enums.Ideas;
+using PortfolioWebApp.Common.Models.Ideas;
 using PortfolioWebApp.Common.Models.Models;
 using PortfolioWebApp.Domain.Entities.Jokes;
 
@@ -21,8 +22,8 @@ namespace PortfolioWebApp.Infrastructure.Configurations.AutoMapper
             CreateMap<WeatherHistoryModel, WeatherHistoryEntity>();
 
             //Ideas
-            CreateMap<IdeaCategoryModel, IdeaCategoryEntity>();
-            CreateMap<IdeaCategoryEntity, IdeaCategoryModel>();
+            //CreateMap<IdeaCategoryEnum, IdeaCategoryEntity>();
+            //CreateMap<IdeaCategoryEntity, IdeaCategoryEnum>();
 
             CreateMap<InnovationIdeasEntity, InnovationIdeasModel>();
             CreateMap<InnovationIdeasModel, InnovationIdeasEntity>();

@@ -2,6 +2,6 @@
 {
     public class IdeasAddIdeaFromFormCommand : IRequest<int>
     {
-        public required InnovationIdeasModel model { get; set; }
+        public required InnovationIdeasModel Model { get; set; }
     }
 }

@@ -13,7 +13,7 @@
 
         public async Task<int> Handle(IdeasAddIdeaFromFormCommand request, CancellationToken cancellationToken)
         {
-            var command =  _mapper.Map<InnovationIdeasModel,InnovationIdeasEntity> (request.model);
+            var command =  _mapper.Map<InnovationIdeasModel,InnovationIdeasEntity> (request.Model);
             await _repository.AddToIdeas(command);
             return 200;
        }

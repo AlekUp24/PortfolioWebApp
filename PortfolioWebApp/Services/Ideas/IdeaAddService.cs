@@ -11,7 +11,7 @@
 
         public async Task AddToIdeas(InnovationIdeasModel model) 
         {
-            IdeasAddIdeaFromFormCommand command = new IdeasAddIdeaFromFormCommand() { model = model};
+            IdeasAddIdeaFromFormCommand command = new IdeasAddIdeaFromFormCommand() { Model = model};
 
             await _mediator.Send(command);
         }

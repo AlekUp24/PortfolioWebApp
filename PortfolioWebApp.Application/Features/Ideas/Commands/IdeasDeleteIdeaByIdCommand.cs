@@ -2,6 +2,6 @@
 {
     public class IdeasDeleteIdeaByIdCommand : IRequest<int>
     {
-        public required int ideaId { get; set; }
+        public required int IdeaId { get; set; }
     }
 }

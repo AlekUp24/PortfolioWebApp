@@ -14,7 +14,7 @@
         public async Task<InnovationIdeasModel> Handle(IdeasEditGetIdeaByIdQuery request, CancellationToken cancellationToken)
         {
             InnovationIdeasModel idea = new InnovationIdeasModel();
-            var result = await _repository.GetIdeaById(request.ideaId);
+            var result = await _repository.GetIdeaById(request.IdeaId);
             idea = _mapper.Map<InnovationIdeasEntity,InnovationIdeasModel>(result);
             return idea;
         }

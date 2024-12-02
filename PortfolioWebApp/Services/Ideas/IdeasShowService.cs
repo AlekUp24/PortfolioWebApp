@@ -14,7 +14,7 @@ namespace PortfolioWebApp.Services.Ideas
 
         public async Task ChangeStatus(InnovationIdeasModel idea)
         {
-            IdeasChangeStatusCommand query = new IdeasChangeStatusCommand() { idea = idea };
+            IdeasChangeStatusCommand query = new IdeasChangeStatusCommand() { Idea = idea };
             await _mediator.Send(query);
         }
 

@@ -1,4 +1,5 @@
 ﻿@page "/IdeaEdit/{IdeaId:int}"
+
 @rendermode InteractiveServer
 @inherits PortfolioWebApp.Data.Ideas.IdeaEditBase
 
@@ -40,7 +41,7 @@ else
                         <label for="name" class="col-form-label col-md-3">Category: </label>
                         <div class="col-md-8">
                             <InputSelect class="col-4 p-2" @bind-Value="@EditedIdea.Category">
-                                @foreach (IdeaCategoryModel category in Enum.GetValues(typeof(IdeaCategoryModel)))
+                                @foreach (IdeaCategoryEnum category in Enum.GetValues(typeof(IdeaCategoryEnum)))
                                 {
                                     <option value="@category">@category</option>
                                 }

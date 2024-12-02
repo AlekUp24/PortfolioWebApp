@@ -2,6 +2,6 @@
 {
     public class IdeasEditGetIdeaByIdQuery : IRequest<InnovationIdeasModel>
     {
-        public required int ideaId { get; set; }
+        public required int IdeaId { get; set; }
     }
 }
