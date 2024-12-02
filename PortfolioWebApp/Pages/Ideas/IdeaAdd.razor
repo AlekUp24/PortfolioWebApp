@@ -5,11 +5,11 @@
 <PageTitle>Add Ideas</PageTitle>
 
 
-@if (@isNewSubmission)
+@if (@IsNewSubmission)
 {
 
     <div class="form-container col-10 mx-auto p-5">
-        <EditForm Enhance Model="model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
+        <EditForm Enhance Model="Model" OnValidSubmit="@AddIdeaFromForm" FormName="AddIdeaForm">
             <DataAnnotationsValidator/>
             
 
@@ -21,24 +21,24 @@
             <div class="row mb-3">
                 <label for="name" class="col-form-label col-md-3">Name: </label>
                 <div class="col-md-8">
-                    <InputText id="name" class="form-control" @bind-Value="model.Name" placeholder="Enter Name"></InputText>
+                    <InputText id="name" class="form-control" @bind-Value="Model.Name" placeholder="Enter Name"></InputText>
                 </div>
-                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => model.Name)"/>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Model.Name)"/>
             </div>
 
             <div class="row mb-3">
                 <label for="description" class="col-form-label col-md-3">Description: </label>
                 <div class="col-md-8">
-                    <InputTextArea id="name" class="form-control" @bind-Value="model.Description" placeholder="Enter Description"></InputTextArea>
+                    <InputTextArea id="name" class="form-control" @bind-Value="Model.Description" placeholder="Enter Description"></InputTextArea>
                 </div>
-                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => model.Description)" />
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Model.Description)" />
             </div>
 
             <div class="row mb-3">
                 <label for="name" class="col-form-label col-md-3">Category: </label>
                 <div class="col-md-8">
                     <InputSelect class="col-4 p-2" @bind-Value="Category">
-                        @foreach (IdeaCategoryModel category in Enum.GetValues(typeof(IdeaCategoryModel)))
+                        @foreach (IdeaCategoryEnum category in Enum.GetValues(typeof(IdeaCategoryEnum)))
                         {
                             <option value="@category">@category</option>
                         }

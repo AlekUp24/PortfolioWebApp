@@ -1,8 +1,7 @@
-﻿namespace PortfolioWebApp.Application.Services.Ideas
+﻿namespace PortfolioWebApp.Application.Services.Ideas;
+
+public interface IIdeasShowService
 {
-    public interface IIdeasShowService
-    {
-        Task<IEnumerable<InnovationIdeasModel>> GetAllIdeas();
-        Task ChangeStatus(InnovationIdeasModel idea);
-    }
+    Task<IEnumerable<InnovationIdeasModel>> GetAllIdeas();
+    Task ChangeStatus(InnovationIdeasModel idea);
 }

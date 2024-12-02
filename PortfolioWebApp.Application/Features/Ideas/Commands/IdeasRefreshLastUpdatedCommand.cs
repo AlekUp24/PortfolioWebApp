@@ -1,7 +1,6 @@
-﻿namespace PortfolioWebApp.Application.Features.Ideas.Commands
+﻿namespace PortfolioWebApp.Application.Features.Ideas.Commands;
+
+public class IdeasRefreshLastUpdatedCommand : IRequest<int>
 {
-    public class IdeasRefreshLastUpdatedCommand : IRequest<int>
-    {
-        public required InnovationIdeasModel idea { get; set; }
-    }
+    public required InnovationIdeasModel Idea { get; set; }
 }

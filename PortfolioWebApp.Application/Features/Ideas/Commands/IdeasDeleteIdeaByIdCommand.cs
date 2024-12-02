@@ -1,7 +1,6 @@
-﻿namespace PortfolioWebApp.Application.Features.Ideas.Commands
+﻿namespace PortfolioWebApp.Application.Features.Ideas.Commands;
+
+public class IdeasDeleteIdeaByIdCommand : IRequest<int>
 {
-    public class IdeasDeleteIdeaByIdCommand : IRequest<int>
-    {
-        public required int ideaId { get; set; }
-    }
+    public required int IdeaId { get; set; }
 }

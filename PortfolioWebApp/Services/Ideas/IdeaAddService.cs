@@ -1,19 +1,18 @@
-﻿namespace PortfolioWebApp.Services.Ideas
+﻿namespace PortfolioWebApp.Services.Ideas;
+
+public class IdeaAddService : IIdeaAddService
 {
-    public class IdeaAddService : IIdeaAddService
+    private readonly IMediator _mediator;
+
+    public IdeaAddService(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public IdeaAddService(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    public async Task AddToIdeas(InnovationIdeasModel model) 
+    {
+        IdeasAddIdeaFromFormCommand command = new IdeasAddIdeaFromFormCommand() { Model = model};
 
-        public async Task AddToIdeas(InnovationIdeasModel model) 
-        {
-            IdeasAddIdeaFromFormCommand command = new IdeasAddIdeaFromFormCommand() { model = model};
-
-            await _mediator.Send(command);
-        }
+        await _mediator.Send(command);
     }
 }

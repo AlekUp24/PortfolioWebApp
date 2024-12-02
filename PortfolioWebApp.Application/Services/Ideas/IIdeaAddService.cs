@@ -1,7 +1,6 @@
-﻿namespace PortfolioWebApp.Application.Services.Ideas
+﻿namespace PortfolioWebApp.Application.Services.Ideas;
+
+public interface IIdeaAddService
 {
-    public interface IIdeaAddService
-    {
-        Task AddToIdeas(InnovationIdeasModel model);
-    }
+    Task AddToIdeas(InnovationIdeasModel model);
 }

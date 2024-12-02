@@ -1,8 +1,7 @@
-﻿namespace PortfolioWebApp.Domain.Entities.Jokes
+﻿namespace PortfolioWebApp.Domain.Entities.Jokes;
+
+public class JokesResponseEntity
 {
-    public class JokesResponseEntity
-    {
-        public string? Setup { get; set; }
-        public string? Punchline { get; set; }
-    }
+    public string? Setup { get; set; }
+    public string? Punchline { get; set; }
 }
