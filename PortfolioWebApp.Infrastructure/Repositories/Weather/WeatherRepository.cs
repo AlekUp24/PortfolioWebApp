@@ -117,6 +117,7 @@ public class WeatherRepository : IWeatherRepository, IDisposable
             else
             {
                 LocationFound = false;
+                _logger.LogWarning($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => Location not found");
                 return null;
             }
     }
@@ -138,11 +139,12 @@ public class WeatherRepository : IWeatherRepository, IDisposable
 
         if (existingRecord != null)
         {
-            _logger.LogInformation("Duplicate entry found, not adding to DB");
+            _logger.LogInformation($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => Duplicate entry found, not adding to DB");
             return existingRecord;
         }
         var toBeAdded = await _appDbContext.WeatherHistory.AddAsync(weatherHistory);
         await _appDbContext.SaveChangesAsync();
+        _logger.LogInformation($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => Weather Record added to DB");
         return toBeAdded.Entity;
     }
 }
