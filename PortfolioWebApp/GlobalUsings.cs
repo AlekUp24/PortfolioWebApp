@@ -14,8 +14,6 @@ global using PortfolioWebApp.Common.Models.Jokes;
 global using PortfolioWebApp.Common.Models.Ideas;
 global using PortfolioWebApp.Common.Enums;
 global using PortfolioWebApp.Application.Services.Ideas;
-global using PortfolioWebApp.Application.Features.Ideas.Commands;
-global using PortfolioWebApp.Application.Features.Ideas.Queries;
 global using PortfolioWebApp.Application.Services.Jokes;
 global using PortfolioWebApp.Services.Ideas;
 global using PortfolioWebApp.Data.Ideas;
