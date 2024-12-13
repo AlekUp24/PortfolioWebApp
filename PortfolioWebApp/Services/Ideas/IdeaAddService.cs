@@ -2,17 +2,16 @@
 
 public class IdeaAddService : IIdeaAddService
 {
-    private readonly IMediator _mediator;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public IdeaAddService(IMediator mediator)
+    public IdeaAddService(IHttpClientFactory httpClientFactory)
     {
-        _mediator = mediator;
+        _httpClientFactory = httpClientFactory;
     }
 
-    public async Task AddToIdeas(InnovationIdeasModel model) 
+    public async Task AddToIdeas(InnovationIdeasModel model)
     {
-        IdeasAddIdeaFromFormCommand command = new IdeasAddIdeaFromFormCommand() { Model = model};
-
-        await _mediator.Send(command);
+        var _httpClient = _httpClientFactory.CreateClient("PortfolioApi");
+        await _httpClient.PostAsJsonAsync($"IdeasAddIdea/AddIdea", model);
     }
 }

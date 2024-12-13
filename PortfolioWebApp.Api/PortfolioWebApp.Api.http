@@ -11,3 +11,11 @@ Accept: application/json
 ###
 PATCH {{PortfolioWebApp.Api_HostAddress}}/ideaschangestatus/4015
 Accept: application/json
+
+###
+GET {{PortfolioWebApp.Api_HostAddress}}/ideasgetideabyid/4015
+Accept: application/json
+
+###
+PATCH {{PortfolioWebApp.Api_HostAddress}}/ideasrefreshlastupdated
+Accept: application/json

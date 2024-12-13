@@ -19,7 +19,7 @@ public class IdeasChangeStatusController : Controller
     public async Task<IActionResult> ChangeStatus(int id)
     {
         await _repository.ChangeStatus(id);
-        _logger.LogInformation("Change Status ideas worked!");
+        _logger.LogInformation($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => Changed status - ID: {id}");
         return Ok();
     } 
 }

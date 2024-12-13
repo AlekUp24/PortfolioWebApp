@@ -15,9 +15,9 @@ public class IdeaEditBase : MainBase
         EditedIdea = await IdeaEditService.GetIdeaById(IdeaId);
     }
 
-    public async Task DeleteIdea(int ideaId)
+    public async Task DeleteIdea(int IdeaId)
     {
-        await IdeaEditService.DeleteIdea(ideaId);
+        await IdeaEditService.DeleteIdea(IdeaId);
         NavigationManager.NavigateTo("/IdeaShow");
     }
 

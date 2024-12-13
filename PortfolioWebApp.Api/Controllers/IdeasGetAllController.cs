@@ -29,15 +29,13 @@ public class IdeasGetAllController : Controller
                 {
                     results.Add(_mapper.Map<InnovationIdeasEntity, InnovationIdeasModel>(item));
                 }
-                _logger.LogInformation("Get All ideas worked!");
             }
-
+            _logger.LogInformation($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => All ideas fetched from DB.");
             return Ok(results);
-
         }
         catch (Exception ex)
         {
-            _logger.LogInformation(ex.Message);
+            _logger.LogError(ex.Message);
             return NotFound(null);
         }
     }

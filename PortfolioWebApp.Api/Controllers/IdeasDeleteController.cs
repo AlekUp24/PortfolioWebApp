@@ -19,6 +19,7 @@ public class IdeasDeleteController : Controller
     public async Task<IActionResult> DeleteIdea(int id)
     {
         await _repository.DeleteIdea(id);
+        _logger.LogWarning($"{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} => Deleted idea - ID: {id}");
         return Ok();
     }
 

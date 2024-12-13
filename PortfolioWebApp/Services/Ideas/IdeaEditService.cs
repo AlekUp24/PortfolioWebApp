@@ -1,33 +1,33 @@
-﻿using System.Net.Http;
+﻿using Azure;
+using PortfolioWebApp.Pages.Ideas;
 
 namespace PortfolioWebApp.Services.Ideas;
 
 public class IdeaEditService : IIdeaEditService
 {
-    private readonly IMediator _mediator;
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public IdeaEditService(IMediator mediator, IHttpClientFactory httpClientFactory)
+    public IdeaEditService(IHttpClientFactory httpClientFactory)
     {
-        _mediator = mediator;
         _httpClientFactory = httpClientFactory;
     }
 
     public async Task<InnovationIdeasModel> GetIdeaById(int IdeaId)
     {
-        IdeasEditGetIdeaByIdQuery query = new IdeasEditGetIdeaByIdQuery() { IdeaId = IdeaId};
-        return await _mediator.Send(query);
+        var _httpClient = _httpClientFactory.CreateClient("PortfolioApi");
+        var response =  await _httpClient.GetFromJsonAsync<InnovationIdeasModel>($"IdeasGetIdeaByID/{IdeaId}");
+        return response;
     }
 
     public async Task DeleteIdea(int IdeaId)
     {
         var _httpClient = _httpClientFactory.CreateClient("PortfolioApi");
-        await _httpClient.GetAsync($"IdeasDelete/{IdeaId}");
+        await _httpClient.DeleteAsync($"IdeasDelete/{IdeaId}");
     }
 
     public async Task RefreshLastUpdated(InnovationIdeasModel EditedIdea) 
     {
-        IdeasRefreshLastUpdatedCommand query = new IdeasRefreshLastUpdatedCommand() { Idea = EditedIdea };
-        await _mediator.Send(query);
+        var _httpClient = _httpClientFactory.CreateClient("PortfolioApi");
+        await _httpClient.PatchAsync($"IdeasRefreshLastUpdated/RefreshLastUpdated", JsonContent.Create(EditedIdea));
     }
 }
