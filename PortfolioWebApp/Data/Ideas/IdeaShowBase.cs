@@ -9,9 +9,9 @@ public class IdeaShowBase: MainBase
         AllIdeas = await IdeasShowService.GetAllIdeas();
     }
 
-    public async Task ChangeStatus(InnovationIdeasModel idea)
+    public async Task ChangeStatus(int ideaId)
     {
-        await IdeasShowService.ChangeStatus(idea);
+        await IdeasShowService.ChangeStatus(ideaId);
         AllIdeas = await IdeasShowService.GetAllIdeas();
     }
 

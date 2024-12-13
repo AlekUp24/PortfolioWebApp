@@ -13,8 +13,7 @@ public class IdeasChangeStatusCommandHandler : IRequestHandler<IdeasChangeStatus
 
     public async Task<int> Handle(IdeasChangeStatusCommand request, CancellationToken cancellationToken)
     {
-        var toUpdate = _mapper.Map<InnovationIdeasModel, InnovationIdeasEntity>(request.Idea);
-        await _repository.ChangeStatus(toUpdate);
+        await _repository.ChangeStatus(request.IdeaId);
         return 200;
     }
 }

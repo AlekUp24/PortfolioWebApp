@@ -10,7 +10,7 @@ public interface IInnovationIdeasRepository
 
     Task DeleteIdea(int ideaId);
 
-    Task ChangeStatus(InnovationIdeasEntity idea);
+    Task ChangeStatus(int ideaId);
 
     Task RefreshLastUpdated(InnovationIdeasEntity idea);
 }

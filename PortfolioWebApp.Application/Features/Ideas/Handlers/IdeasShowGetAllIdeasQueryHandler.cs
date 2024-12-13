@@ -24,7 +24,6 @@ public class IdeasShowGetAllIdeasQueryHandler : IRequestHandler<IdeasShowGetAllI
         {
             results.Add(_mapper.Map<InnovationIdeasEntity, InnovationIdeasModel>(item));
         }
-
         return results;
     }
 }

@@ -75,7 +75,7 @@ else
                     </RadzenRow>
                 </RadzenCard>
                 <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0">
-                    <RadzenButton Variant="Variant.Text" Click="() => ChangeStatus(idea)" class="rz-text-secondary-color" Text="Change Status" />
+                    <RadzenButton Variant="Variant.Text" Text="Change Status" Click="() => ChangeStatus(idea.Id)" class="rz-text-secondary-color"/>
                     <RadzenButton Variant="Variant.Text" Text="Edit" Click="() => NavigateToEdit(idea.Id)"/>
                 </RadzenStack>
             </RadzenCard>

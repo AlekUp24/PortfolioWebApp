@@ -1,0 +1,13 @@
+@PortfolioWebApp.Api_HostAddress = https://localhost:7067/api
+
+###
+GET {{PortfolioWebApp.Api_HostAddress}}/ideasgetall/
+Accept: application/json
+
+###
+DELETE {{PortfolioWebApp.Api_HostAddress}}/ideasdelete/3011
+Accept: application/json
+
+###
+PATCH {{PortfolioWebApp.Api_HostAddress}}/ideaschangestatus/4015
+Accept: application/json

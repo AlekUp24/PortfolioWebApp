@@ -53,14 +53,21 @@ public class InnovationIdeasRepository : IInnovationIdeasRepository, IDisposable
     public async Task DeleteIdea(int ideaId)
     {
         var toDelete = await GetIdeaById(ideaId);
-        _appDbContext.InnovationIdeas.Remove(toDelete);
-        await _appDbContext.SaveChangesAsync();
+        if (toDelete != null)
+        {
+            _appDbContext.InnovationIdeas.Remove(toDelete);
+            await _appDbContext.SaveChangesAsync();
+        }
+        else
+        {
+            _logger.LogInformation($"Idea with {ideaId} not found in DB!");
+        }
 
     }
 
-    public async Task ChangeStatus(InnovationIdeasEntity idea)
+    public async Task ChangeStatus(int ideaId)
     {
-        InnovationIdeasEntity ideaToEdit = await GetIdeaById(idea.Id);
+        InnovationIdeasEntity ideaToEdit = await GetIdeaById(ideaId);
 
         ideaToEdit.Implemented = !ideaToEdit.Implemented;
         ideaToEdit.LastUpdated = DateTime.Now;

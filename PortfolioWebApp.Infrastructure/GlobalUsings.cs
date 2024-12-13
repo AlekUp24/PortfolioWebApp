@@ -17,3 +17,5 @@ global using PortfolioWebApp.Infrastructure.Configurations.AutoMapper;
 global using PortfolioWebApp.Common.Models.Ideas;
 global using PortfolioWebApp.Common.Models.Models;
 global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Http;

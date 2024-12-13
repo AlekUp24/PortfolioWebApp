@@ -3,5 +3,5 @@
 public interface IIdeasShowService
 {
     Task<IEnumerable<InnovationIdeasModel>> GetAllIdeas();
-    Task ChangeStatus(InnovationIdeasModel idea);
+    Task ChangeStatus(int ideaId);
 }

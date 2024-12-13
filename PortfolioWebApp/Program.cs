@@ -1,5 +1,9 @@
 
 
+using PortfolioWebApp.Domain.Interfaces.Ideas;
+using PortfolioWebApp.Infrastructure.Repositories.Ideas;
+using System.Net.Http.Headers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,11 +22,10 @@ builder.Services.AddRadzenComponents();
 // add Http Client
 builder.Services.AddScoped<HttpClient>();
 
-
 // add Application Dependencies
 builder.Services.AddApplication();
 // add Infrastructure Dependencies
-builder.Services.AddInfrustructure();
+builder.Services.AddInfrustructure(builder.Configuration.GetSection("PortfolioApi"));
 
 builder.Services.AddScoped<IJokesService, JokesService>();
 builder.Services.AddScoped<IIdeaAddService, IdeaAddService>();

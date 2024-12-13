@@ -1,12 +1,16 @@
-﻿namespace PortfolioWebApp.Services.Ideas;
+﻿using System.Net.Http;
+
+namespace PortfolioWebApp.Services.Ideas;
 
 public class IdeaEditService : IIdeaEditService
 {
     private readonly IMediator _mediator;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public IdeaEditService(IMediator mediator)
+    public IdeaEditService(IMediator mediator, IHttpClientFactory httpClientFactory)
     {
         _mediator = mediator;
+        _httpClientFactory = httpClientFactory;
     }
 
     public async Task<InnovationIdeasModel> GetIdeaById(int IdeaId)
@@ -17,8 +21,8 @@ public class IdeaEditService : IIdeaEditService
 
     public async Task DeleteIdea(int IdeaId)
     {
-        IdeasDeleteIdeaByIdCommand query = new IdeasDeleteIdeaByIdCommand() { IdeaId = IdeaId };
-        await _mediator.Send(query);
+        var _httpClient = _httpClientFactory.CreateClient("PortfolioApi");
+        await _httpClient.GetAsync($"IdeasDelete/{IdeaId}");
     }
 
     public async Task RefreshLastUpdated(InnovationIdeasModel EditedIdea) 
